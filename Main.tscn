@@ -11,6 +11,7 @@ script = ExtResource( 1 )
 pause_mode = 1
 
 [node name="Splash" parent="Room" instance=ExtResource( 2 )]
+nextScene = "res://rooms/Playground.tscn"
 
 [node name="Transitions" type="CanvasLayer" parent="."]
 layer = 128
