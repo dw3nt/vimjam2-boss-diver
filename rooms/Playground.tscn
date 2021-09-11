@@ -37,3 +37,4 @@ rotate = false
 loop = false
 
 [node name="Player" parent="ClimbLadderPath/PathFollow2D" index="0" instance=ExtResource( 3 )]
+followPath = NodePath("..")

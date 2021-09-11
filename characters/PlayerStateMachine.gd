@@ -1,0 +1,2 @@
+extends BaseStateMachine
+class_name PlayerStateMachine

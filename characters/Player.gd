@@ -1,23 +1,26 @@
 extends KinematicBody2D
 class_name Player
 
-export(float) var walkSpeed = 50
+export(NodePath) var followPath
 
-var canWalk : bool = false
-var isWalking : bool = false
+onready var stateWrap = $PlayerStateMachine as PlayerStateMachine
+onready var sprite = $Sprite as Sprite
 
 
+func _ready() -> void:
+	$PlayerStateMachine/ClimbLadder.pathFollow = get_node(followPath)
+	
+	stateWrap.ready()
+	
+	
 func _input(event) -> void:
-	if canWalk && event.is_action_pressed("walk"):
-		if !isWalking:
-			print('walk')
-			isWalking = true
-		else:
-			print('stop')
-			isWalking = false
-			canWalk = false
-		
-		
-func _physics_process(_delta) -> void:
-	if isWalking:
-		move_and_slide(Vector2.RIGHT * walkSpeed)
+	stateWrap.state.input(event)
+	
+	
+func _process(delta) -> void:
+	stateWrap.state.process(delta)
+
+
+func _physics_process(delta) -> void:
+	stateWrap.state.physics_process(delta)
+	move_and_slide(stateWrap.velocity)
