@@ -13,14 +13,21 @@ func enter_state(params : Dictionary = {}) -> void:
 func input(event) -> void:
 	if event.is_action_pressed("walk"):
 		if !isMoving:
-			moveDir = Vector2.RIGHT
 			isMoving = true
 		else:
 			fsm.change_state("Jump")
+	elif event.is_action_pressed("jump"):
+		fsm.change_state("Jump")
 	
 	
 func physics_process(delta : float) -> void:
-	fsm.velocity = moveDir * WALK_SPEED
+	if isMoving:
+		fsm.velocity.x = WALK_SPEED
+		
+	if !fsm.isOnFloor:
+		fsm.velocity.y += GRAVITY
+	else:
+		fsm.velocity.y = GRAVITY
 	
 	
 func exit_state() -> void:

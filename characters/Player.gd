@@ -23,4 +23,6 @@ func _process(delta) -> void:
 
 func _physics_process(delta) -> void:
 	stateWrap.state.physics_process(delta)
-	move_and_slide(stateWrap.velocity)
+	move_and_slide(stateWrap.velocity, Vector2.UP)
+	
+	stateWrap.isOnFloor = is_on_floor()

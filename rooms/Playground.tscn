@@ -5,7 +5,7 @@
 [ext_resource path="res://characters/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/background.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/ladder.png" type="Texture" id=5]
-[ext_resource path="res://assets/images/board.png" type="Texture" id=6]
+[ext_resource path="res://objects/DivingBoard.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -24,11 +24,14 @@ position = Vector2( 32, 32 )
 texture = ExtResource( 5 )
 centered = false
 
-[node name="Board" type="Sprite" parent="." index="2"]
-position = Vector2( 112, 64 )
-texture = ExtResource( 6 )
+[node name="DivingBoard" parent="." index="2" instance=ExtResource( 6 )]
+position = Vector2( 114, 64 )
 
-[node name="ClimbLadderPath" type="Path2D" parent="." index="3"]
+[node name="Player" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 19, 144 )
+followPath = NodePath("../ClimbLadderPath/PathFollow2D")
+
+[node name="ClimbLadderPath" type="Path2D" parent="." index="4"]
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ClimbLadderPath" index="0"]
@@ -36,5 +39,5 @@ position = Vector2( 19, 144 )
 rotate = false
 loop = false
 
-[node name="Player" parent="ClimbLadderPath/PathFollow2D" index="0" instance=ExtResource( 3 )]
-followPath = NodePath("..")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="ClimbLadderPath/PathFollow2D" index="0"]
+remote_path = NodePath("../../../Player")
