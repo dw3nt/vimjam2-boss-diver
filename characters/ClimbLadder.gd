@@ -6,7 +6,7 @@ var pathFollow : PathFollow2D
 
 
 func enter_state(params : Dictionary = {}) -> void:
-	pass
+	fsm.anim.play("idle")
 	
 	
 func process(delta : float) -> void:

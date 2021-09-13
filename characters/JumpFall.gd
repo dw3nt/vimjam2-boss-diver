@@ -9,7 +9,6 @@ onready var groundCheckDelayTimer = $GroundCheckDelay as Timer
 
 
 func enter_state(params : Dictionary = {}) -> void:
-	print('jump fall')
 	fsm.velocity.y = -JUMP_FORCE
 	fsm.velocity.x = FORWARD_FORCE
 	

@@ -8,12 +8,13 @@ var moveDir : = Vector2.ZERO
 
 
 func enter_state(params : Dictionary = {}) -> void:
-	pass # play walk anim
+	pass
 	
 	
 func input(event) -> void:
 	if event.is_action_pressed("walk") && !isMoving:
 		isMoving = true
+		fsm.anim.play("walk")
 	elif event.is_action_pressed("jump"):
 		fsm.change_state("Jump")
 	

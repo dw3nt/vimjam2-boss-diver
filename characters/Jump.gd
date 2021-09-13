@@ -20,6 +20,8 @@ var maxVelocityY : = 0.0
 
 
 func enter_state(params : Dictionary = {}) -> void:
+	fsm.anim.play("jump_up")
+	
 	fsm.velocity = Vector2.ZERO
 	if boardInRange:
 		var xDiff = global_position.x - boardPosition.x
@@ -48,6 +50,7 @@ func physics_process(delta : float) -> void:
 	if fsm.isOnFloor && accurateInput < 1:
 		fsm.change_state("JumpFall")
 	elif fsm.isOnFloor && accurateInput == 1:
+		fsm.anim.play("jump_up")
 		fsm.velocity.y = -JUMP_FORCE * jumpScale
 		
 		if abs(fsm.velocity.y) > maxVelocityY:
