@@ -7,6 +7,7 @@ onready var stateWrap = $PlayerStateMachine as PlayerStateMachine
 onready var jumpState = $PlayerStateMachine/Jump
 
 onready var sprite = $Sprite as Sprite
+onready var collider = $CollisionShape2D as CollisionShape2D
 
 
 func _ready() -> void:

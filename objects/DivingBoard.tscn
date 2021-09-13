@@ -10,6 +10,7 @@ extents = Vector2( 40, 4 )
 extents = Vector2( 18, 24 )
 
 [node name="DivingBoard" type="StaticBody2D"]
+collision_layer = 2
 collision_mask = 0
 script = ExtResource( 2 )
 
@@ -22,7 +23,6 @@ shape = SubResource( 1 )
 [node name="JumpDetect" type="Area2D" parent="."]
 position = Vector2( 20, -1 )
 collision_layer = 0
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpDetect"]
 shape = SubResource( 2 )

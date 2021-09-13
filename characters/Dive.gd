@@ -1,7 +1,6 @@
 extends PlayerState
 
 const FORWARD_DIVE_SPEED : float = 100.0
-const AIR_RESIST : float = 0.01
 
 
 func enter_state(params : Dictionary = {}) -> void:

@@ -19,12 +19,15 @@ var jumpScale : float = 0.0
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.velocity = Vector2.ZERO
-	var xDiff = global_position.x - boardPosition.x
-	if xDiff < 0:
-		fsm.change_state("JumpFall")
+	if boardInRange:
+		var xDiff = global_position.x - boardPosition.x
+		if xDiff < 0:
+			fsm.change_state("JumpFall")
+		else:
+			maxJumpScale = range_lerp(xDiff, 0.0, 40.0, 0.15, 1.0)
+			jumpScale += maxJumpScale
 	else:
-		maxJumpScale = range_lerp(xDiff, 0.0, 40.0, 0.15, 1.0)
-		jumpScale += maxJumpScale
+		fsm.change_state("JumpFall")
 	
 	
 func input(event) -> void:
