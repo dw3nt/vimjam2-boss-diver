@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter_state(params : Dictionary = {}) -> void:
-	print('walk fall')
+	fsm.anim.play("walk-fall", -1, 1.5)
 	
 	
 func physics_process(delta : float) -> void:
