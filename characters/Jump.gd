@@ -47,7 +47,7 @@ func physics_process(delta : float) -> void:
 	elif fsm.isOnFloor && accurateInput == 1:
 		fsm.velocity.y = -JUMP_FORCE * jumpScale
 		
-		if jumpNumber > MAX_JUMPS:
+		if jumpNumber >= MAX_JUMPS:
 			fsm.change_state("Dive", { "jumpForce": -JUMP_FORCE * jumpNumber, "forwardForceScale": maxJumpScale })
 			return
 			

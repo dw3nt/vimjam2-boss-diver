@@ -5,6 +5,7 @@ export(NodePath) var followPath
 
 onready var stateWrap = $PlayerStateMachine as PlayerStateMachine
 onready var jumpState = $PlayerStateMachine/Jump
+onready var diveState = $PlayerStateMachine/Dive
 
 onready var sprite = $Sprite as Sprite
 onready var collider = $CollisionShape2D as CollisionShape2D
@@ -28,6 +29,10 @@ func exitedBoardRange() -> void:
 	jumpState.boardPosition = Vector2.ZERO
 	jumpState.boardHeight = -1.0
 	jumpState.boardDetectHeight = -1.0
+	
+	
+func enteredPool() -> void:
+	stateWrap.state.enteredPool()
 	
 	
 func _input(event) -> void:
