@@ -4,6 +4,8 @@ class_name Player
 export(NodePath) var followPath
 
 onready var stateWrap = $PlayerStateMachine as PlayerStateMachine
+onready var jumpState = $PlayerStateMachine/Jump
+
 onready var sprite = $Sprite as Sprite
 
 
@@ -11,6 +13,20 @@ func _ready() -> void:
 	$PlayerStateMachine/ClimbLadder.pathFollow = get_node(followPath)
 	
 	stateWrap.ready()
+	
+	
+func enteredBoardRange(boardPos : Vector2, boardHeight : float, boardDetectHeight : float) -> void:
+	jumpState.boardInRange = true
+	jumpState.boardPosition = boardPos
+	jumpState.boardHeight = boardHeight
+	jumpState.boardDetectHeight = boardDetectHeight
+	
+	
+func exitedBoardRange() -> void:
+	jumpState.boardInRange = false
+	jumpState.boardPosition = Vector2.ZERO
+	jumpState.boardHeight = -1.0
+	jumpState.boardDetectHeight = -1.0
 	
 	
 func _input(event) -> void:

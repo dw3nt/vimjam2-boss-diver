@@ -2,6 +2,7 @@ extends PlayerState
 
 const WALK_SPEED : = 70
 
+var changeToWalkFall : bool = false
 var isMoving : bool = false
 var moveDir : = Vector2.ZERO
 
@@ -11,11 +12,8 @@ func enter_state(params : Dictionary = {}) -> void:
 	
 	
 func input(event) -> void:
-	if event.is_action_pressed("walk"):
-		if !isMoving:
-			isMoving = true
-		else:
-			fsm.change_state("Jump")
+	if event.is_action_pressed("walk") && !isMoving:
+		isMoving = true
 	elif event.is_action_pressed("jump"):
 		fsm.change_state("Jump")
 	
@@ -26,10 +24,14 @@ func physics_process(delta : float) -> void:
 		
 	if !fsm.isOnFloor:
 		fsm.velocity.y += GRAVITY
+		if fsm.velocity.y > GRAVITY * 2:
+			changeToWalkFall = true
+			fsm.change_state("WalkFall")
 	else:
 		fsm.velocity.y = GRAVITY
 	
 	
 func exit_state() -> void:
-	moveDir = Vector2.ZERO
-	fsm.velocity = Vector2.ZERO
+	if !changeToWalkFall:
+		moveDir = Vector2.ZERO
+		fsm.velocity = Vector2.ZERO

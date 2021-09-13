@@ -6,7 +6,7 @@ const AIR_RESIST : float = 0.01
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.velocity.y = params.jumpForce
-	fsm.velocity.x = FORWARD_DIVE_SPEED
+	fsm.velocity.x = FORWARD_DIVE_SPEED * params.forwardForceScale
 	
 	
 func physics_process(delta : float) -> void:
