@@ -16,6 +16,8 @@ var accuracy : float = 0.0
 var jumpNumber : int = 1
 var jumpScale : float = 0.0
 
+var maxVelocityY : = 0.0
+
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.velocity = Vector2.ZERO
@@ -25,6 +27,7 @@ func enter_state(params : Dictionary = {}) -> void:
 			fsm.change_state("JumpFall")
 		else:
 			maxJumpScale = range_lerp(xDiff, 0.0, 40.0, 0.15, 1.0)
+			fsm.points1 = maxJumpScale * 10
 			jumpScale += maxJumpScale
 	else:
 		fsm.change_state("JumpFall")
@@ -47,6 +50,9 @@ func physics_process(delta : float) -> void:
 	elif fsm.isOnFloor && accurateInput == 1:
 		fsm.velocity.y = -JUMP_FORCE * jumpScale
 		
+		if abs(fsm.velocity.y) > maxVelocityY:
+			maxVelocityY = abs(fsm.velocity.y)
+		
 		if jumpNumber >= MAX_JUMPS:
 			fsm.change_state("Dive", { "jumpForce": -JUMP_FORCE * jumpNumber, "forwardForceScale": maxJumpScale })
 			return
@@ -56,4 +62,8 @@ func physics_process(delta : float) -> void:
 		accuracy = 0.0
 		
 	fsm.velocity.y += GRAVITY
+	
+
+func exit_state() -> void:
+	fsm.points2 = range_lerp(maxVelocityY, 0.0, JUMP_FORCE * 3, 0.0, 10.0)
 		
