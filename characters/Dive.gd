@@ -4,10 +4,13 @@ const FORWARD_DIVE_SPEED : float = 65.0
 const GRACEFUL_BONUS : = 5
 const SLOPPY_BONUS : = -3
 
+const POSE_FRAME_RANGE : = [15, 21]
+const DIVE_FRAME : = 13
+
 var isDiving = false
 
 var canInput : = true
-var inputCooldown : = 0.35
+var inputCooldown : = 0.5
 
 var expectedInputs = 15
 var inputs : = 0
@@ -23,6 +26,7 @@ func input(event) -> void:
 	if canInput && event.is_action_pressed("walk") || event.is_action_pressed("jump"):
 		inputs += 1
 		canInput = false
+		fsm.sprite.frame = choosePoseFrame()
 		poseTimer.start(inputCooldown)
 	
 	
@@ -42,10 +46,15 @@ func enteredPool() -> void:
 	else:
 		inputs += SLOPPY_BONUS
 		fsm.change_state("SloppyEntrance")
+		
+		
+func choosePoseFrame() -> int:
+	return randi() % (POSE_FRAME_RANGE[1] - POSE_FRAME_RANGE[0]) + POSE_FRAME_RANGE[0]
 
 
 func _on_PoseTimer_timeout() -> void:
 	canInput = true
+	fsm.sprite.frame = DIVE_FRAME
 	
 	
 func exit_state() -> void:
