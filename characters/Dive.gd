@@ -39,13 +39,15 @@ func physics_process(delta : float) -> void:
 		isDiving = true
 	
 	
-func enteredPool() -> void:
+func enteredPool() -> bool:
 	if canInput:
 		inputs += GRACEFUL_BONUS
 		fsm.change_state("GracefulEntrance")
+		return false
 	else:
 		inputs += SLOPPY_BONUS
 		fsm.change_state("SloppyEntrance")
+		return true
 		
 		
 func choosePoseFrame() -> int:

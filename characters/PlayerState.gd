@@ -7,5 +7,5 @@ const AIR_RESIST : float = 0.01
 var fsm : PlayerStateMachine
 
 
-func enteredPool() -> void:
-	pass
+func enteredPool() -> bool:
+	return true

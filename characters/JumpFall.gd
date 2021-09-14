@@ -27,11 +27,12 @@ func physics_process(delta : float) -> void:
 	
 	fsm.velocity.y += GRAVITY
 	fsm.velocity.x = lerp(fsm.velocity.x, 0.0, AIR_RESIST)
+	
+	
+func enteredPool() -> bool:
+	fsm.change_state("SloppyEntrance")
+	return true
 
 
 func _on_GroundCheckDelay_timeout():
 	shouldCheckGround = true
-	
-	
-func exit_state() -> void:
-	fsm.sprite.rotation_degrees = 0

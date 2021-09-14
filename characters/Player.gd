@@ -31,8 +31,8 @@ func exitedBoardRange() -> void:
 	jumpState.boardDetectHeight = -1.0
 	
 	
-func enteredPool() -> void:
-	stateWrap.state.enteredPool()
+func enteredPool() -> bool:
+	return stateWrap.state.enteredPool()
 	
 	
 func _input(event) -> void:
