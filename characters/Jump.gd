@@ -57,7 +57,7 @@ func physics_process(delta : float) -> void:
 			maxVelocityY = abs(fsm.velocity.y)
 		
 		if jumpNumber >= MAX_JUMPS:
-			fsm.change_state("Dive", { "jumpForce": -JUMP_FORCE * jumpNumber, "forwardForceScale": maxJumpScale })
+			fsm.change_state("Dive")
 			return
 			
 		jumpNumber += 1

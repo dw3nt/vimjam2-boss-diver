@@ -15,6 +15,10 @@ func enter_state(params : Dictionary = {}) -> void:
 	fsm.player.set_collision_mask_bit(1, false)
 	groundCheckDelayTimer.start()
 	
+	fsm.anim.play("walk-fall")
+	fsm.sprite.rotation_degrees = 90
+	fsm.sprite.z_index = 10
+	
 	
 func physics_process(delta : float) -> void:
 	if shouldCheckGround && fsm.isOnFloor:
@@ -27,3 +31,7 @@ func physics_process(delta : float) -> void:
 
 func _on_GroundCheckDelay_timeout():
 	shouldCheckGround = true
+	
+	
+func exit_state() -> void:
+	fsm.sprite.rotation_degrees = 0

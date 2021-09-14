@@ -4,6 +4,8 @@ const FORWARD_DIVE_SPEED : float = 65.0
 const GRACEFUL_BONUS : = 5
 const SLOPPY_BONUS : = -3
 
+var isDiving = false
+
 var canInput : = true
 var inputCooldown : = 0.35
 
@@ -14,7 +16,6 @@ onready var poseTimer = $PoseTimer as Timer
 
 
 func enter_state(params : Dictionary = {}) -> void:
-	fsm.velocity.y = params.jumpForce
 	fsm.velocity.x = FORWARD_DIVE_SPEED
 	
 	
@@ -28,6 +29,10 @@ func input(event) -> void:
 func physics_process(delta : float) -> void:
 	fsm.velocity.x = lerp(fsm.velocity.x, 0.0, AIR_RESIST)
 	fsm.velocity.y += GRAVITY
+	
+	if !isDiving && fsm.velocity.y >= 0:
+		fsm.anim.play("dive")
+		isDiving = true
 	
 	
 func enteredPool() -> void:
