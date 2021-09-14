@@ -13,7 +13,7 @@
 [ext_resource path="res://characters/WalkFall.gd" type="Script" id=12]
 [ext_resource path="res://characters/GroundSplat.gd" type="Script" id=13]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "climb"
 length = 0.4
 loop = true
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "values": [ 9, 10, 11, 10 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "dive"
 length = 0.5
 tracks/0/type = "value"
@@ -46,8 +46,7 @@ tracks/0/keys = {
 "values": [ 12, 13 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -78,7 +77,7 @@ tracks/0/keys = {
 "values": [ 5, 6 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "splat"
 length = 0.1
 tracks/0/type = "value"
@@ -94,8 +93,7 @@ tracks/0/keys = {
 "values": [ 14 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walk"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -111,8 +109,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walk-fall"
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -128,7 +125,7 @@ tracks/0/keys = {
 "values": [ 7, 8 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 8, 8 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -143,17 +140,17 @@ frame = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/climb = SubResource( 6 )
-anims/dive = SubResource( 7 )
-anims/idle = SubResource( 2 )
+anims/climb = SubResource( 1 )
+anims/dive = SubResource( 2 )
+anims/idle = SubResource( 3 )
 anims/jump_up = SubResource( 4 )
-anims/splat = SubResource( 8 )
-anims/walk = SubResource( 3 )
-anims/walk-fall = SubResource( 5 )
+anims/splat = SubResource( 5 )
+anims/walk = SubResource( 6 )
+anims/walk-fall = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 
 [node name="PlayerStateMachine" type="Node2D" parent="."]
 script = ExtResource( 3 )
