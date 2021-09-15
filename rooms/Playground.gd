@@ -1,6 +1,8 @@
 extends "res://rooms/BaseRoom.gd"
 
+onready var player = $Player
 onready var judgesTable = $JudgesTable
+onready var diveResults = $CanvasLayer/DiveResults
 
 
 func _ready() -> void:
@@ -21,3 +23,10 @@ func _on_Player_entered_pool(isSloppy : bool) -> void:
 		judgesTable.playClap()
 	
 	judgesTable.playHeadBobAtSpeed(speed)
+
+
+func _on_Floor_dive_finished():
+	diveResults.points.append(player.stateWrap.points1)
+	diveResults.points.append(player.stateWrap.points2)
+	diveResults.points.append(player.stateWrap.points3)
+	diveResults.anim.play("fade_in")

@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/DivingBoard.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Floor",
+"language": "GDScript",
+"path": "res://objects/Floor.gd"
+}, {
 "base": "Sprite",
 "class": "Judge",
 "language": "GDScript",
@@ -53,6 +58,7 @@ _global_script_class_icons={
 "BaseState": "",
 "BaseStateMachine": "",
 "DivingBoard": "",
+"Floor": "",
 "Judge": "",
 "Player": "",
 "PlayerState": "",

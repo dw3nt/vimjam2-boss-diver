@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://rooms/BaseRoom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/Playground.gd" type="Script" id=2]
@@ -9,13 +9,13 @@
 [ext_resource path="res://objects/Ground.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/Pool.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/images/ground-far.png" type="Texture" id=9]
+[ext_resource path="res://menus/DiveResults.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/Floor.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 8, 144, 0, 0, 0, 0, 57, 144, 0, 0, 0, 0, 64, 105, 0, 0, 0, 0, 72, 67, 0, 0, 0, 0, 75, 58, 0, 0, 0, 0, 89, 58 )
 }
-
-[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Playground" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -79,15 +79,14 @@ loop = false
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="ClimbLadderPath/PathFollow2D" index="0"]
 remote_path = NodePath("../../../Player")
 
-[node name="Floor" type="StaticBody2D" parent="." index="8"]
-position = Vector2( 168, 213 )
-collision_layer = 4
-collision_mask = 0
+[node name="Floor" parent="." index="8" instance=ExtResource( 11 )]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" index="0"]
-scale = Vector2( 40, 1 )
-shape = SubResource( 2 )
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
+
+[node name="DiveResults" parent="CanvasLayer" index="0" instance=ExtResource( 10 )]
+visible = false
 
 [connection signal="entered_pool" from="Player" to="." method="_on_Player_entered_pool"]
+[connection signal="dive_finished" from="Floor" to="." method="_on_Floor_dive_finished"]
 
 [editable path="JudgesTable"]

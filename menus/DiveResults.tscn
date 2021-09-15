@@ -1,0 +1,194 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://menus/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/images/card-back.png" type="Texture" id=2]
+[ext_resource path="res://menus/JudgeCard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/images/card-front.png" type="Texture" id=4]
+[ext_resource path="res://menus/DiveResults.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_in"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MarginContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "init"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="DiveResults" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "init"
+anims/fade_in = SubResource( 2 )
+anims/init = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 164.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 48.0
+margin_top = 12.0
+margin_right = 240.0
+margin_bottom = 136.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="DiveResultLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 8.0
+text = "Dive completed"
+align = 1
+
+[node name="JudgeCardsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 192.0
+margin_bottom = 88.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="JudgeCard1" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
+margin_left = 8.0
+margin_right = 56.0
+rect_scale = Vector2( 1, 1 )
+cardBack = ExtResource( 2 )
+cardFront = ExtResource( 4 )
+score = 3.265
+flipTime = 0.5
+
+[node name="JudgeCard2" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
+margin_left = 72.0
+margin_right = 120.0
+rect_scale = Vector2( 1, 1 )
+cardBack = ExtResource( 2 )
+cardFront = ExtResource( 4 )
+score = 5.596
+flipTime = 0.75
+
+[node name="JudgeCard3" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
+margin_left = 136.0
+margin_right = 184.0
+rect_scale = Vector2( 1, 1 )
+cardBack = ExtResource( 2 )
+cardFront = ExtResource( 4 )
+score = 8.991
+flipTime = 1.0
+
+[node name="FinalScoreWrap" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 104.0
+margin_right = 192.0
+margin_bottom = 124.0
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
+margin_right = 192.0
+margin_bottom = 8.0
+text = "You got a final score of"
+
+[node name="FinalScoreLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
+margin_top = 12.0
+margin_right = 192.0
+margin_bottom = 20.0
+text = "10.5"
+align = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
