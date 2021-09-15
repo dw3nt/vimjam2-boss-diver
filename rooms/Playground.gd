@@ -17,5 +17,7 @@ func _on_Player_entered_pool(isSloppy : bool) -> void:
 	var speed = 1.0
 	if isSloppy:
 		speed = 0.0
+	else:
+		judgesTable.playClap()
 	
 	judgesTable.playHeadBobAtSpeed(speed)

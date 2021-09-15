@@ -1,10 +1,18 @@
 extends Sprite
+class_name Judge
+
+const HAND_OFFSET_INCREMENT : = 16
 
 export(NodePath) var lookTargetPath
 
 var lookTarget
+var handOffsetSet : = false
 
-onready var anim = $AnimationPlayer as AnimationPlayer
+onready var headAnim = $HeadAnimation as AnimationPlayer
+onready var handAnim = $HandAnimation as AnimationPlayer
+
+onready var leftHand = $LeftHand as Sprite
+onready var rightHand = $RightHand as Sprite
 
 
 func _ready() -> void:
@@ -22,3 +30,11 @@ func switchHeadBobFrame() -> void:
 		frame = 1
 	elif frame == 1:
 		frame = 0
+		
+		
+func setHandOffset() -> void:
+	if !handOffsetSet:
+		var yOffset = randi() % 2
+		rightHand.offset.y = HAND_OFFSET_INCREMENT * yOffset
+		leftHand.offset.y = HAND_OFFSET_INCREMENT * yOffset
+		handOffsetSet = true

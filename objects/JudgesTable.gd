@@ -13,4 +13,9 @@ func _ready() -> void:
 	
 func playHeadBobAtSpeed(speed : float) -> void:
 	for judge in judges:
-		judge.anim.play("head_bob", -1, speed)
+		judge.headAnim.play("head_bob", -1, speed)
+		
+		
+func playClap() -> void:
+	for judge in judges:
+		judge.handAnim.play("clap", -1, 1.5)

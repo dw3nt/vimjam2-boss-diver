@@ -1,7 +1,103 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/images/judge1.png" type="Texture" id=1]
 [ext_resource path="res://characters/Judge.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/judge-hand.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "clap"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, -14 ), Vector2( 3, -14 ), Vector2( 5, -14 ), Vector2( 3, -14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, -14 ), Vector2( -3, -14 ), Vector2( -5, -14 ), Vector2( -3, -14 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightHand:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("LeftHand:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "setHandOffset"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "init"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("RightHand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftHand:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "head_bob"
@@ -31,5 +127,20 @@ hframes = 2
 frame = 1
 script = ExtResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="HandAnimation" type="AnimationPlayer" parent="."]
+autoplay = "init"
+anims/clap = SubResource( 2 )
+anims/init = SubResource( 3 )
+
+[node name="HeadAnimation" type="AnimationPlayer" parent="."]
 anims/head_bob = SubResource( 1 )
+
+[node name="RightHand" type="Sprite" parent="."]
+position = Vector2( 1, -14 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 16 )
+
+[node name="LeftHand" type="Sprite" parent="."]
+position = Vector2( -1, -14 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, 16 )
