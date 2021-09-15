@@ -40,6 +40,5 @@ func _on_RoughTimer_timeout():
 	if animationSpeed > BASE_ANIMATION_SPEED:
 		animationSpeed = max(animationSpeed - ANIMATION_SPEED_REDUCTION, BASE_ANIMATION_SPEED)
 		roughTimer.start(1.5)
-		print(animationSpeed)
 		
 	playPoolIdle(animationSpeed)

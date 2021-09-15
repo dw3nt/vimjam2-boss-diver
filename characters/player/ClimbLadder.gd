@@ -21,9 +21,6 @@ func enter_state(params : Dictionary = {}) -> void:
 	
 	
 func process(delta : float) -> void:
-	if pathFollow.unit_offset == 0.0:
-		print(global_position)
-	
 	if pathFollow.unit_offset < 1.0:
 		pathFollow.offset += CLIMB_SPEED * delta
 	else:
