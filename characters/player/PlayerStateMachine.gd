@@ -5,6 +5,7 @@ export(NodePath) var playerPath
 
 var player = null
 var isOnFloor : bool = false
+var slides : = []
 
 var points1 = 0.0	# how far out ont diving board you go
 var points2 = 0.0 	# how high you jump

@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+signal entered_pool
+
 export(NodePath) var followPath
 
 onready var stateWrap = $PlayerStateMachine as PlayerStateMachine
@@ -32,7 +34,9 @@ func exitedBoardRange() -> void:
 	
 	
 func enteredPool() -> bool:
-	return stateWrap.state.enteredPool()
+	var isSloppy = stateWrap.state.enteredPool()
+	emit_signal("entered_pool", isSloppy)
+	return isSloppy
 	
 	
 func _input(event) -> void:
@@ -46,5 +50,10 @@ func _process(delta) -> void:
 func _physics_process(delta) -> void:
 	stateWrap.state.physics_process(delta)
 	move_and_slide(stateWrap.velocity, Vector2.UP)
+	
+	stateWrap.slides.clear()
+	if stateWrap.state.name == jumpState.name:
+		for i in get_slide_count():
+			stateWrap.slides.append(get_slide_collision(i))
 	
 	stateWrap.isOnFloor = is_on_floor()

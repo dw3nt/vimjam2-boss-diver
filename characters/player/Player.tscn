@@ -1,17 +1,17 @@
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/images/player.png" type="Texture" id=1]
-[ext_resource path="res://characters/Player.gd" type="Script" id=2]
-[ext_resource path="res://characters/PlayerStateMachine.gd" type="Script" id=3]
-[ext_resource path="res://characters/ClimbLadder.gd" type="Script" id=4]
-[ext_resource path="res://characters/WalkBoard.gd" type="Script" id=5]
-[ext_resource path="res://characters/Jump.gd" type="Script" id=6]
-[ext_resource path="res://characters/Dive.gd" type="Script" id=7]
-[ext_resource path="res://characters/JumpFall.gd" type="Script" id=8]
-[ext_resource path="res://characters/SloppyEntrance.gd" type="Script" id=9]
-[ext_resource path="res://characters/GracefulEntrance.gd" type="Script" id=11]
-[ext_resource path="res://characters/WalkFall.gd" type="Script" id=12]
-[ext_resource path="res://characters/GroundSplat.gd" type="Script" id=13]
+[ext_resource path="res://characters/player/SloppyEntrance.gd" type="Script" id=2]
+[ext_resource path="res://characters/player/PlayerStateMachine.gd" type="Script" id=3]
+[ext_resource path="res://characters/player/GracefulEntrance.gd" type="Script" id=4]
+[ext_resource path="res://characters/player/ClimbLadder.gd" type="Script" id=5]
+[ext_resource path="res://characters/player/GroundSplat.gd" type="Script" id=6]
+[ext_resource path="res://characters/player/WalkBoard.gd" type="Script" id=7]
+[ext_resource path="res://characters/player/JumpFall.gd" type="Script" id=8]
+[ext_resource path="res://characters/player/Dive.gd" type="Script" id=9]
+[ext_resource path="res://characters/player/Player.gd" type="Script" id=10]
+[ext_resource path="res://characters/player/Jump.gd" type="Script" id=11]
+[ext_resource path="res://characters/player/WalkFall.gd" type="Script" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "climb"
@@ -128,7 +128,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 0.0
@@ -145,7 +145,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 [sub_resource type="GradientTexture" id=11]
 gradient = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=12]
 lifetime_randomness = 0.25
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
@@ -165,7 +165,7 @@ color_ramp = SubResource( 11 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 6
-script = ExtResource( 2 )
+script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -11 )
@@ -195,16 +195,16 @@ spritePath = NodePath("../Sprite")
 playerPath = NodePath("..")
 
 [node name="ClimbLadder" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="WalkBoard" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 
 [node name="WalkFall" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 12 )
 
 [node name="Jump" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 6 )
+script = ExtResource( 11 )
 
 [node name="JumpFall" type="Node2D" parent="PlayerStateMachine"]
 script = ExtResource( 8 )
@@ -214,13 +214,13 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Dive" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 7 )
+script = ExtResource( 9 )
 
 [node name="PoseTimer" type="Timer" parent="PlayerStateMachine/Dive"]
 one_shot = true
 
 [node name="GracefulEntrance" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 11 )
+script = ExtResource( 4 )
 
 [node name="Particles2D" type="Particles2D" parent="PlayerStateMachine/GracefulEntrance"]
 emitting = false
@@ -228,10 +228,10 @@ amount = 1
 lifetime = 5.0
 one_shot = true
 local_coords = false
-process_material = SubResource( 14 )
+process_material = SubResource( 9 )
 
 [node name="SloppyEntrance" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 9 )
+script = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="PlayerStateMachine/SloppyEntrance"]
 emitting = false
@@ -240,10 +240,10 @@ lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 9 )
+process_material = SubResource( 12 )
 
 [node name="GroundSplat" type="Node2D" parent="PlayerStateMachine"]
-script = ExtResource( 13 )
+script = ExtResource( 6 )
 
 [connection signal="timeout" from="PlayerStateMachine/JumpFall/GroundCheckDelay" to="PlayerStateMachine/JumpFall" method="_on_GroundCheckDelay_timeout"]
 [connection signal="timeout" from="PlayerStateMachine/Dive/PoseTimer" to="PlayerStateMachine/Dive" method="_on_PoseTimer_timeout"]

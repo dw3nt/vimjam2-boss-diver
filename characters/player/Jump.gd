@@ -66,6 +66,9 @@ func physics_process(delta : float) -> void:
 		
 	fsm.velocity.y += GRAVITY
 	
+	for collision in fsm.slides:
+		print(collision.collider.name)
+	
 
 func exit_state() -> void:
 	fsm.points2 = range_lerp(maxVelocityY, 0.0, JUMP_FORCE * 3, 0.0, 10.0)
