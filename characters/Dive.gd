@@ -1,5 +1,7 @@
 extends PlayerState
 
+const POSE_PARTICLES_SCENE = preload("res://effects/PoseParticles.tscn")
+
 const FORWARD_DIVE_SPEED : float = 65.0
 const GRACEFUL_BONUS : = 5
 const SLOPPY_BONUS : = -3
@@ -28,6 +30,7 @@ func input(event) -> void:
 		canInput = false
 		fsm.sprite.frame = choosePoseFrame()
 		poseTimer.start(inputCooldown)
+		instancePoseParticles()
 	
 	
 func physics_process(delta : float) -> void:
@@ -52,6 +55,12 @@ func enteredPool() -> bool:
 		
 func choosePoseFrame() -> int:
 	return randi() % (POSE_FRAME_RANGE[1] - POSE_FRAME_RANGE[0]) + POSE_FRAME_RANGE[0]
+	
+	
+func instancePoseParticles() -> void:
+	var inst = POSE_PARTICLES_SCENE.instance()
+	add_child(inst)
+	inst.emitting = true
 
 
 func _on_PoseTimer_timeout() -> void:
