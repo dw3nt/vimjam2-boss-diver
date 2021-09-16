@@ -16,7 +16,7 @@ font_data = ExtResource( 3 )
 theme = ExtResource( 4 )
 script = ExtResource( 2 )
 transition = 1
-practiceScene = "res://rooms/Playground.tscn"
+practiceScene = "res://rooms/Practice.tscn"
 
 [node name="Background" parent="." index="0" instance=ExtResource( 6 )]
 position = Vector2( 0, 19 )
