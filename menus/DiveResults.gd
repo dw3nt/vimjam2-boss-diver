@@ -32,9 +32,22 @@ func _on_AnimationPlayer_animation_finished(anim_name) -> void:
 
 func _on_Card3Flip_card_flipped(anim_name) -> void:
 	var totalPoints = points[0] + points[1] + points[2]
-	finalScoreLabel.text = str("%.1f" % totalPoints)
+	finalScoreLabel.text = convertScoreToJob(totalPoints)
 	finalScoreWrap.modulate = Color(1, 1, 1, 1)
 	buttonsWrap.modulate = Color(1, 1, 1, 1)
+	
+	
+func convertScoreToJob(score : float) -> String:
+	if score >= 24.0:
+		return "BOSS!"
+	elif score >= 20.0:
+		return "Manager"
+	elif score >= 16.0:
+		return "Employee"
+	elif score >= 14.0:
+		return "Intern"
+	else:
+		return "FIRED!"
 
 
 func _on_RetryButton_pressed():
