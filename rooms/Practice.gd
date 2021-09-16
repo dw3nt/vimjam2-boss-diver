@@ -8,7 +8,11 @@ onready var diveResults = $CanvasLayer/DiveResults
 
 
 func _ready() -> void:
-	randomize()
+	if params:
+		judgesTable.currentJudges = params.judges
+	
+	judgesTable.setJudges()
+	
 	emit_signal("room_ready")
 
 
@@ -30,7 +34,7 @@ func _on_Floor_dive_finished():
 
 
 func _on_DiveResults_retry_button_pressed():
-	emit_signal("room_change_requested", { "scene": filename })
+	emit_signal("room_change_requested", { "scene": filename, "params": { "judges": judgesTable.currentJudges } })
 
 
 func _on_DiveResults_main_menu_button_pressed():

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/images/judge1.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/judge-hands.png" type="Texture" id=1]
 [ext_resource path="res://characters/Judge.gd" type="Script" id=2]
-[ext_resource path="res://assets/images/judge-hand.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/judges.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "clap"
 length = 0.4
 loop = true
@@ -71,7 +71,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "init"
 length = 0.1
 tracks/0/type = "value"
@@ -99,8 +99,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "head_bob"
+[sub_resource type="Animation" id=3]
 length = 0.2
 loop = true
 tracks/0/type = "method"
@@ -122,25 +121,27 @@ tracks/0/keys = {
 }
 
 [node name="Judge" type="Sprite"]
-texture = ExtResource( 1 )
-hframes = 2
+texture = ExtResource( 3 )
+hframes = 12
 frame = 1
 script = ExtResource( 2 )
 
 [node name="HandAnimation" type="AnimationPlayer" parent="."]
 autoplay = "init"
-anims/clap = SubResource( 2 )
-anims/init = SubResource( 3 )
+anims/clap = SubResource( 1 )
+anims/init = SubResource( 2 )
 
 [node name="HeadAnimation" type="AnimationPlayer" parent="."]
-anims/head_bob = SubResource( 1 )
+anims/head_bob = SubResource( 3 )
 
 [node name="RightHand" type="Sprite" parent="."]
 position = Vector2( 1, -14 )
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 offset = Vector2( 0, 16 )
+hframes = 6
 
 [node name="LeftHand" type="Sprite" parent="."]
 position = Vector2( -1, -14 )
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 offset = Vector2( 0, 16 )
+hframes = 6

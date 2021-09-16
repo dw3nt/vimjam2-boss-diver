@@ -27,6 +27,7 @@ var activeTransition
 
 
 func _ready():
+	randomize()
 	TransitionsLoader.initTransitions(transitionsWrap)
 	
 	currentRoom = roomWrap.get_child(0)
@@ -67,6 +68,7 @@ func _on_CurrentRoom_room_ready():
 func _on_CurrentRoom_room_change_requested(params = {}):
 	var scene = (null if !params.has("scene") else params["scene"])
 	var transition = (null if !params.has("transition") else params["transition"])
+	var roomVars = (null if !params.has("params") else params["params"])
 	
 	if transition != null:
 		changeActiveTransition(transition)
@@ -83,6 +85,7 @@ func _on_CurrentRoom_room_change_requested(params = {}):
 		var inst = load(scene).instance()
 		attachSignals(inst)
 		currentRoom = inst
+		currentRoom.params = roomVars
 	
 	call_deferred("initRoom")
 
