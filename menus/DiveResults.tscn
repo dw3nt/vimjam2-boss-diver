@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/default_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/images/card-back.png" type="Texture" id=2]
 [ext_resource path="res://menus/JudgeCard.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/images/card-front.png" type="Texture" id=4]
 [ext_resource path="res://menus/DiveResults.gd" type="Script" id=5]
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=6]
 
@@ -97,6 +95,7 @@ __meta__ = {
 }
 
 [node name="Background" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
@@ -110,6 +109,7 @@ anims/fade_in = SubResource( 2 )
 anims/init = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 16
@@ -124,13 +124,13 @@ __meta__ = {
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 304.0
-margin_bottom = 168.0
+margin_bottom = 164.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 margin_left = 28.0
-margin_top = 6.0
+margin_top = 4.0
 margin_right = 260.0
-margin_bottom = 146.0
+margin_bottom = 144.0
 custom_constants/separation = 8
 alignment = 1
 
@@ -150,24 +150,18 @@ alignment = 1
 [node name="JudgeCard1" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
 margin_left = 28.0
 margin_right = 76.0
-cardBack = ExtResource( 2 )
-cardFront = ExtResource( 4 )
 score = 3.265
 flipTime = 0.5
 
 [node name="JudgeCard2" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
 margin_left = 92.0
 margin_right = 140.0
-cardBack = ExtResource( 2 )
-cardFront = ExtResource( 4 )
 score = 5.596
 flipTime = 0.75
 
 [node name="JudgeCard3" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
 margin_left = 156.0
 margin_right = 204.0
-cardBack = ExtResource( 2 )
-cardFront = ExtResource( 4 )
 score = 8.991
 flipTime = 1.0
 
