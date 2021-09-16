@@ -10,11 +10,6 @@ func _ready() -> void:
 	emit_signal("room_ready")
 
 
-func _input(event):
-	if event is InputEventKey and event.scancode == KEY_R and not event.echo:
-		get_tree().reload_current_scene()
-
-
 func _on_Player_entered_pool(isSloppy : bool) -> void:
 	var speed = 1.0
 	if isSloppy:
@@ -30,3 +25,7 @@ func _on_Floor_dive_finished():
 	diveResults.points.append(player.stateWrap.points2)
 	diveResults.points.append(player.stateWrap.points3)
 	diveResults.anim.play("fade_in")
+
+
+func _on_DiveResults_retry_button_pressed():
+	emit_signal("room_change_requested", { "scene": filename })

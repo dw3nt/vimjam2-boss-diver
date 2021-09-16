@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/images/card-back.png" type="Texture" id=2]
 [ext_resource path="res://menus/JudgeCard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/card-front.png" type="Texture" id=4]
 [ext_resource path="res://menus/DiveResults.gd" type="Script" id=5]
+[ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=2]
 resource_name = "fade_in"
@@ -126,29 +127,29 @@ margin_right = 304.0
 margin_bottom = 164.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
-margin_left = 48.0
-margin_top = 12.0
-margin_right = 240.0
-margin_bottom = 136.0
-custom_constants/separation = 16
+margin_left = 28.0
+margin_top = 4.0
+margin_right = 260.0
+margin_bottom = 144.0
+custom_constants/separation = 8
 alignment = 1
 
 [node name="DiveResultLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_right = 192.0
+margin_right = 232.0
 margin_bottom = 8.0
 text = "Dive completed"
 align = 1
 
 [node name="JudgeCardsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 192.0
-margin_bottom = 88.0
+margin_top = 16.0
+margin_right = 232.0
+margin_bottom = 80.0
 custom_constants/separation = 16
 alignment = 1
 
 [node name="JudgeCard1" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
-margin_left = 8.0
-margin_right = 56.0
+margin_left = 28.0
+margin_right = 76.0
 rect_scale = Vector2( 1, 1 )
 cardBack = ExtResource( 2 )
 cardFront = ExtResource( 4 )
@@ -156,8 +157,8 @@ score = 3.265
 flipTime = 0.5
 
 [node name="JudgeCard2" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
-margin_left = 72.0
-margin_right = 120.0
+margin_left = 92.0
+margin_right = 140.0
 rect_scale = Vector2( 1, 1 )
 cardBack = ExtResource( 2 )
 cardFront = ExtResource( 4 )
@@ -165,8 +166,8 @@ score = 5.596
 flipTime = 0.75
 
 [node name="JudgeCard3" parent="MarginContainer/CenterContainer/VBoxContainer/JudgeCardsWrap" instance=ExtResource( 3 )]
-margin_left = 136.0
-margin_right = 184.0
+margin_left = 156.0
+margin_right = 204.0
 rect_scale = Vector2( 1, 1 )
 cardBack = ExtResource( 2 )
 cardFront = ExtResource( 4 )
@@ -175,20 +176,43 @@ flipTime = 1.0
 
 [node name="FinalScoreWrap" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 104.0
-margin_right = 192.0
-margin_bottom = 124.0
+margin_top = 88.0
+margin_right = 232.0
+margin_bottom = 108.0
 
 [node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
-margin_right = 192.0
+margin_right = 232.0
 margin_bottom = 8.0
 text = "You got a final score of"
+align = 1
 
 [node name="FinalScoreLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
 margin_top = 12.0
-margin_right = 192.0
+margin_right = 232.0
 margin_bottom = 20.0
 text = "10.5"
 align = 1
 
+[node name="ButtonsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 116.0
+margin_right = 232.0
+margin_bottom = 140.0
+custom_constants/separation = 32
+alignment = 1
+
+[node name="RetryButton" parent="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap" instance=ExtResource( 6 )]
+margin_left = 0.0
+margin_right = 100.0
+margin_bottom = 24.0
+text = "Retry"
+
+[node name="MainMenuButton" parent="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap" instance=ExtResource( 6 )]
+margin_left = 132.0
+margin_right = 232.0
+margin_bottom = 24.0
+text = "Main Menu"
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap/RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]

@@ -88,5 +88,6 @@ visible = false
 
 [connection signal="entered_pool" from="Player" to="." method="_on_Player_entered_pool"]
 [connection signal="dive_finished" from="Floor" to="." method="_on_Floor_dive_finished"]
+[connection signal="retry_button_pressed" from="CanvasLayer/DiveResults" to="." method="_on_DiveResults_retry_button_pressed"]
 
 [editable path="JudgesTable"]
