@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://rooms/BaseRoom.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rooms/Playground.gd" type="Script" id=2]
@@ -8,29 +8,9 @@
 [ext_resource path="res://objects/DivingBoard.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/Ground.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/Pool.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/images/ground-far.png" type="Texture" id=9]
+[ext_resource path="res://rooms/Background.tscn" type="PackedScene" id=9]
 [ext_resource path="res://menus/DiveResults.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/Floor.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/images/fence.png" type="Texture" id=12]
-[ext_resource path="res://assets/images/grass.png" type="Texture" id=13]
-[ext_resource path="res://assets/images/sky.png" type="Texture" id=14]
-[ext_resource path="res://assets/images/sun.png" type="Texture" id=15]
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 15 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 2.0
-} ]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -40,33 +20,12 @@ _data = {
 [node name="Playground" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Sky" type="Sprite" parent="." index="0"]
-position = Vector2( -14, -109 )
-z_index = -200
-texture = ExtResource( 14 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 352, 320 )
+[node name="Background" parent="." index="0" instance=ExtResource( 9 )]
 
-[node name="Sun" type="AnimatedSprite" parent="." index="1"]
-position = Vector2( 241, -21 )
-z_index = -150
-frames = SubResource( 4 )
-frame = 1
-playing = true
-
-[node name="Fence" type="Sprite" parent="." index="2"]
-visible = false
-position = Vector2( 0, 110 )
-texture = ExtResource( 12 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 352, 32 )
-
-[node name="DivingBoard" parent="." index="3" instance=ExtResource( 6 )]
+[node name="DivingBoard" parent="." index="1" instance=ExtResource( 6 )]
 position = Vector2( 114, 62 )
 
-[node name="JudgesTable" parent="." index="4" instance=ExtResource( 4 )]
+[node name="JudgesTable" parent="." index="2" instance=ExtResource( 4 )]
 position = Vector2( 189, 127 )
 
 [node name="Judge1" parent="JudgesTable" index="0"]
@@ -78,10 +37,10 @@ lookTargetPath = NodePath("../../Player")
 [node name="Judge3" parent="JudgesTable" index="2"]
 lookTargetPath = NodePath("../../Player")
 
-[node name="Ladder" parent="." index="5" instance=ExtResource( 5 )]
+[node name="Ladder" parent="." index="3" instance=ExtResource( 5 )]
 position = Vector2( 43, 32 )
 
-[node name="Player" parent="." index="6" instance=ExtResource( 3 )]
+[node name="Player" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( 8, 144 )
 followPath = NodePath("../ClimbLadderPath/PathFollow2D")
 
@@ -96,31 +55,14 @@ drag_margin_bottom = 1.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Grass" type="Sprite" parent="." index="7"]
-visible = false
-position = Vector2( 0, 77 )
-z_index = -100
-texture = ExtResource( 13 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 384, 64 )
-
-[node name="GroundFar" type="Sprite" parent="." index="8"]
-position = Vector2( 0, 141 )
-z_index = -10
-texture = ExtResource( 9 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 384, 32 )
-
-[node name="Pool" parent="." index="9" instance=ExtResource( 8 )]
+[node name="Pool" parent="." index="5" instance=ExtResource( 8 )]
 position = Vector2( 214, 172 )
 
-[node name="Ground" parent="." index="10" instance=ExtResource( 7 )]
+[node name="Ground" parent="." index="6" instance=ExtResource( 7 )]
 position = Vector2( 48, 168 )
 z_index = 100
 
-[node name="ClimbLadderPath" type="Path2D" parent="." index="11"]
+[node name="ClimbLadderPath" type="Path2D" parent="." index="7"]
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ClimbLadderPath" index="0"]
@@ -131,9 +73,9 @@ loop = false
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="ClimbLadderPath/PathFollow2D" index="0"]
 remote_path = NodePath("../../../Player")
 
-[node name="Floor" parent="." index="12" instance=ExtResource( 11 )]
+[node name="Floor" parent="." index="8" instance=ExtResource( 11 )]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="13"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
 
 [node name="DiveResults" parent="CanvasLayer" index="0" instance=ExtResource( 10 )]
 visible = false

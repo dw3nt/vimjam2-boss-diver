@@ -16,6 +16,7 @@ func _ready() -> void:
 	animationPlayers.append($Sprite/AnimationPlayer)
 	animationPlayers.append($Sprite2/AnimationPlayer)
 	animationPlayers.append($Sprite3/AnimationPlayer)
+	animationPlayers.append($Sprite4/AnimationPlayer)
 	
 	playPoolIdle(animationSpeed)
 	
