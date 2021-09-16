@@ -19,6 +19,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/state_machine/BaseStateMachine.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Diver",
+"language": "GDScript",
+"path": "res://characters/diver/Diver.gd"
+}, {
+"base": "BaseState",
+"class": "DiverState",
+"language": "GDScript",
+"path": "res://characters/diver/DiverState.gd"
+}, {
+"base": "BaseStateMachine",
+"class": "DiverStateMachine",
+"language": "GDScript",
+"path": "res://characters/diver/DiverStateMachine.gd"
+}, {
 "base": "StaticBody2D",
 "class": "DivingBoard",
 "language": "GDScript",
@@ -57,6 +72,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BaseState": "",
 "BaseStateMachine": "",
+"Diver": "",
+"DiverState": "",
+"DiverStateMachine": "",
 "DivingBoard": "",
 "Floor": "",
 "Judge": "",
