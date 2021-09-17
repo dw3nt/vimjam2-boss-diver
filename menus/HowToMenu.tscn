@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/fonts/PixelOperatorMono8.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://menus/default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/HowToMenu.gd" type="Script" id=4]
+[ext_resource path="res://menus/base_button_hover-dark.tres" type="StyleBox" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+extra_spacing_top = 2
+font_data = ExtResource( 1 )
+
+[node name="HowToMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 170.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 8.0
+margin_right = 280.0
+margin_bottom = 154.0
+custom_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 272.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 1 )
+text = "How To Dive"
+align = 1
+
+[node name="ControlsLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 272.0
+margin_bottom = 44.0
+text = "Move - Left, Right, A, D
+Jump - Up, W"
+align = 1
+
+[node name="InstructionsLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 272.0
+margin_bottom = 118.0
+custom_fonts/font = SubResource( 2 )
+text = "1. Move out onto the diving board
+2. Jump to stop moving
+3. Jump twice just  before landing
+4. Spam all inputs for style
+5. Land gracefully by not styling"
+
+[node name="MainMenu" parent="MarginContainer/CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_left = 86.0
+margin_top = 130.0
+margin_right = 186.0
+margin_bottom = 154.0
+size_flags_horizontal = 4
+custom_styles/hover = ExtResource( 5 )
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

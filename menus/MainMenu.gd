@@ -31,3 +31,11 @@ func _on_StoryIntro_scroll_finished():
 		"scene": practiceScene,
 		"transition": transition
 	})
+
+
+func _on_HowToButton_pressed():
+	anim.play("how_to_slide_in")
+
+
+func _on_HowToMenu_main_menu_pressed():
+	anim.play_backwards("how_to_slide_in")
