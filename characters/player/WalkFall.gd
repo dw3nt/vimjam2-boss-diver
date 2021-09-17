@@ -1,4 +1,4 @@
-extends DiverState
+extends PlayerState
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.anim.play("walk-fall", -1, 1.5)

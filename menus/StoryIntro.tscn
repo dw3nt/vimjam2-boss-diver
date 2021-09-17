@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menus/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://menus/StoryIntro.gd" type="Script" id=2]
+
+[node name="StoryIntro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 180.0
+margin_bottom = 180.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_right = 160.0
+margin_bottom = 715.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 710.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 44.0
+margin_right = 244.0
+margin_bottom = 694.0
+custom_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "The most important time of the year has come..."
+align = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 83.0
+margin_right = 200.0
+margin_bottom = 91.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "Summer break!"
+align = 1
+autowrap = true
+
+[node name="Label3" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 155.0
+margin_right = 200.0
+margin_bottom = 229.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "This is your chance to be the coolest kid of summer.
+
+This is your chance to work at the hottest summer job..."
+align = 1
+autowrap = true
+
+[node name="Label4" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 293.0
+margin_right = 200.0
+margin_bottom = 301.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "The public pool!"
+align = 1
+autowrap = true
+
+[node name="Label5" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 365.0
+margin_right = 200.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "You're on the edge of greatness!"
+align = 1
+autowrap = true
+
+[node name="Label6" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 448.0
+margin_right = 200.0
+margin_bottom = 467.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "Ace your interview to become..."
+align = 1
+autowrap = true
+
+[node name="Label7" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 531.0
+margin_right = 200.0
+margin_bottom = 539.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "THE BOSS DIVER!"
+align = 1
+autowrap = true
+
+[node name="Label8" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 603.0
+margin_right = 200.0
+margin_bottom = 622.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "P.S. - the interview is diving competition"
+align = 1
+autowrap = true
+
+[node name="Label9" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 686.0
+margin_right = 200.0
+margin_bottom = 694.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 2
+text = "Good luck!"
+align = 1
+autowrap = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="MarginContainer/CenterContainer/VBoxContainer"]
+
+[connection signal="screen_exited" from="MarginContainer/CenterContainer/VBoxContainer/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
