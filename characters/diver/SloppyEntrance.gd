@@ -1,4 +1,4 @@
-extends PlayerState
+extends DiverState
 
 onready var particles = $Particles2D
 

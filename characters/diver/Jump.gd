@@ -1,4 +1,4 @@
-extends PlayerState
+extends DiverState
 
 const JUMP_FORCE : float = 40.0
 const MAX_JUMPS : int = 3

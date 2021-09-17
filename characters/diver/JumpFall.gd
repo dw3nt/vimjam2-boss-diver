@@ -1,4 +1,4 @@
-extends PlayerState
+extends DiverState
 
 const JUMP_FORCE : = 15.0
 const FORWARD_FORCE : = 10.0
@@ -12,7 +12,7 @@ func enter_state(params : Dictionary = {}) -> void:
 	fsm.velocity.y = -JUMP_FORCE
 	fsm.velocity.x = FORWARD_FORCE
 	
-	fsm.player.set_collision_mask_bit(1, false)
+	fsm.diver.set_collision_mask_bit(1, false)
 	groundCheckDelayTimer.start()
 	
 	fsm.anim.play("walk-fall")

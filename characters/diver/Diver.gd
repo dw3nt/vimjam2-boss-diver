@@ -5,16 +5,16 @@ signal entered_pool
 
 export(NodePath) var followPath
 
-onready var stateWrap = $PlayerStateMachine as DiverStateMachine
-onready var jumpState = $PlayerStateMachine/Jump
-onready var diveState = $PlayerStateMachine/Dive
+onready var stateWrap = $DiverStateMachine as DiverStateMachine
+onready var jumpState = $DiverStateMachine/Jump
+onready var diveState = $DiverStateMachine/Dive
 
 onready var sprite = $Sprite as Sprite
 onready var collider = $CollisionShape2D as CollisionShape2D
 
 
 func _ready() -> void:
-	$PlayerStateMachine/ClimbLadder.pathFollow = get_node(followPath)
+	$DiverStateMachine/ClimbLadder.pathFollow = get_node(followPath)
 	
 	stateWrap.ready()
 	

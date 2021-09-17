@@ -190,6 +190,9 @@ shape = SubResource( 8 )
 
 [node name="DiverStateMachine" type="Node2D" parent="."]
 script = ExtResource( 3 )
+animationPlayerPath = NodePath("../AnimationPlayer")
+spritePath = NodePath("../Sprite")
+diverPath = NodePath("..")
 
 [node name="ClimbLadder" type="Node2D" parent="DiverStateMachine"]
 script = ExtResource( 5 )

@@ -1,4 +1,4 @@
-extends PlayerState
+extends DiverState
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.sprite.rotation_degrees = 0

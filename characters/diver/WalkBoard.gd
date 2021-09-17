@@ -1,4 +1,4 @@
-extends PlayerState
+extends DiverState
 
 const WALK_SPEED : = 70
 

@@ -1,4 +1,4 @@
-extends PlayerState
+extends DiverState
 
 const POSE_PARTICLES_SCENE = preload("res://effects/PoseParticles.tscn")
 
