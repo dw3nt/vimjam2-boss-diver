@@ -12,7 +12,7 @@
 [ext_resource path="res://menus/HowToMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://menus/CreditsMenu.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "credits_slide_in"
 length = 0.6
 tracks/0/type = "value"
@@ -40,8 +40,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -10 ), Vector2( 330, -10 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=2]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("MenuContainer:modulate")
@@ -69,9 +68,20 @@ tracks/1/keys = {
 "method": "startScroll"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("MenuContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "how_to_slide_in"
+[sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("MenuContainer:rect_position")
@@ -98,7 +108,7 @@ tracks/1/keys = {
 "values": [ Vector2( 330, -10 ), Vector2( 0, -10 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 3 )
 
 [node name="MainMenu" instance=ExtResource( 1 )]
@@ -108,9 +118,9 @@ transition = 1
 practiceScene = "res://rooms/Practice.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
-anims/credits_slide_in = SubResource( 4 )
-anims/fade_out = SubResource( 1 )
-anims/how_to_slide_in = SubResource( 2 )
+anims/credits_slide_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+anims/how_to_slide_in = SubResource( 3 )
 
 [node name="Background" parent="." index="1" instance=ExtResource( 6 )]
 position = Vector2( 0, 19 )
@@ -159,7 +169,7 @@ margin_bottom = 28.0
 [node name="TitleLabel" type="Label" parent="MenuContainer/CenterContainer/VBoxContainer/TitleWrap" index="0"]
 margin_right = 216.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Boss Diver"
 align = 1
 

@@ -13,6 +13,8 @@ onready var buttonsWrap = $MarginContainer/CenterContainer/VBoxContainer/Buttons
 
 
 func _ready() -> void:
+	finalScoreLabel.rect_pivot_offset = finalScoreLabel.rect_size / 2
+	
 	finalScoreWrap.modulate = Color(1, 1, 1, 0)
 	buttonsWrap.modulate = Color(1, 1, 1, 0)
 	
@@ -32,22 +34,25 @@ func _on_AnimationPlayer_animation_finished(anim_name) -> void:
 
 func _on_Card3Flip_card_flipped(anim_name) -> void:
 	var totalPoints = points[0] + points[1] + points[2]
-	finalScoreLabel.text = convertScoreToJob(totalPoints)
+	setLabelsViaScore(totalPoints)
 	finalScoreWrap.modulate = Color(1, 1, 1, 1)
 	buttonsWrap.modulate = Color(1, 1, 1, 1)
 	
 	
-func convertScoreToJob(score : float) -> String:
+func setLabelsViaScore(score : float) -> void:
 	if score >= 24.0:
-		return "BOSS!"
+		finalScoreLabel.text = "BOSS!"
 	elif score >= 20.0:
-		return "Manager"
+		finalScoreLabel.text = "Manager"
 	elif score >= 16.0:
-		return "Employee"
+		finalScoreLabel.text = "Employee"
 	elif score >= 14.0:
-		return "Intern"
+		finalScoreLabel.text = "Intern"
 	else:
-		return "FIRED!"
+		finalScoreLabel.text = "FIRED!"
+		
+	finalScoreWrap.modulate = Color(1, 1, 1, 1)
+	anim.play("score_zoom_out")
 
 
 func _on_RetryButton_pressed():

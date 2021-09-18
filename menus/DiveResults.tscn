@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/fonts/PixelOperatorMono8.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://menus/JudgeCard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menus/DiveResults.gd" type="Script" id=5]
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "fade_in"
 length = 0.9
 tracks/0/type = "value"
@@ -45,8 +46,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "init"
+[sub_resource type="Animation" id=2]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("MarginContainer:modulate")
@@ -84,8 +84,40 @@ tracks/2/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap/FinalScoreLabel:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 8, 8 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "score_zoom_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap/FinalScoreLabel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
 
 [node name="DiveResults" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -105,8 +137,9 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "init"
-anims/fade_in = SubResource( 2 )
-anims/init = SubResource( 1 )
+anims/fade_in = SubResource( 1 )
+anims/init = SubResource( 2 )
+anims/score_zoom_out = SubResource( 4 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -128,22 +161,15 @@ margin_bottom = 164.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 margin_left = 28.0
-margin_top = 4.0
+margin_top = 2.0
 margin_right = 260.0
-margin_bottom = 144.0
+margin_bottom = 145.0
 custom_constants/separation = 8
 alignment = 1
 
-[node name="DiveResultLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_right = 232.0
-margin_bottom = 8.0
-text = "Dive completed"
-align = 1
-
 [node name="JudgeCardsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 16.0
 margin_right = 232.0
-margin_bottom = 80.0
+margin_bottom = 64.0
 custom_constants/separation = 16
 alignment = 1
 
@@ -167,29 +193,32 @@ flipTime = 1.0
 
 [node name="FinalScoreWrap" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 88.0
+margin_top = 72.0
 margin_right = 232.0
-margin_bottom = 108.0
+margin_bottom = 111.0
 custom_constants/separation = 4
 
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
+[node name="PreScoreLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
 margin_right = 232.0
-margin_bottom = 8.0
-text = "Your new position is:"
+margin_bottom = 19.0
+text = "The judges have decided your new position is:"
 align = 1
+autowrap = true
 
 [node name="FinalScoreLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap"]
-margin_top = 12.0
+margin_top = 23.0
 margin_right = 232.0
-margin_bottom = 20.0
+margin_bottom = 39.0
+rect_scale = Vector2( 8, 8 )
+custom_fonts/font = SubResource( 3 )
 text = "10.5"
 align = 1
 
 [node name="ButtonsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 116.0
+margin_top = 119.0
 margin_right = 232.0
-margin_bottom = 140.0
+margin_bottom = 143.0
 custom_constants/separation = 32
 alignment = 1
 

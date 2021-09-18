@@ -5,6 +5,7 @@ signal scroll_finished
 export(float) var initScrollSpeed : = 30.0
 
 var scrollSpeed : float = initScrollSpeed
+var scrollSkipRequested : bool = false
 
 onready var storyContainer = $MarginContainer/CenterContainer/VBoxContainer as VBoxContainer
 onready var visibility = $MarginContainer/CenterContainer/VBoxContainer/VisibilityNotifier2D as VisibilityNotifier2D
@@ -24,11 +25,16 @@ func startScroll() -> void:
 
 
 func _input(event) -> void:
-	if event.is_action("ui_accept"):
+	if event.is_action("scroll_speed_up"):
 		if event.is_pressed():
 			scrollSpeed = initScrollSpeed * 8
 		else:
 			scrollSpeed = initScrollSpeed
+			
+	if event.is_action("scroll_skip") && event.is_pressed():
+		if !scrollSkipRequested:
+			emit_signal("scroll_finished")
+			scrollSkipRequested = true
 		
 
 
@@ -37,4 +43,6 @@ func _process(delta : float) -> void:
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("scroll_finished")
+	if !scrollSkipRequested:
+		emit_signal("scroll_finished")
+		scrollSkipRequested = true

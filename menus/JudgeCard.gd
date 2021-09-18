@@ -10,6 +10,7 @@ onready var flipTimer = $FlipTimer as Timer
 
 func _ready() -> void:
 	rect_pivot_offset.x = rect_size.x / 2
+	score = clamp(score, 0.0, 10.0)
 	
 	
 func startFlipTimer() -> void:
