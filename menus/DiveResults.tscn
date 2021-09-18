@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menus/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/fonts/PixelOperatorMono8.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://menus/JudgeCard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sounds/swoosh.wav" type="AudioStream" id=4]
 [ext_resource path="res://menus/DiveResults.gd" type="Script" id=5]
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=6]
 
@@ -97,7 +98,7 @@ tracks/3/keys = {
 "values": [ Vector2( 8, 8 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "score_zoom_out"
 length = 0.5
 tracks/0/type = "value"
@@ -113,7 +114,7 @@ tracks/0/keys = {
 "values": [ Vector2( 8, 8 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 2 )
 
 [node name="DiveResults" type="Control"]
@@ -139,7 +140,7 @@ __meta__ = {
 autoplay = "init"
 anims/fade_in = SubResource( 1 )
 anims/init = SubResource( 2 )
-anims/score_zoom_out = SubResource( 4 )
+anims/score_zoom_out = SubResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -210,7 +211,7 @@ margin_top = 23.0
 margin_right = 232.0
 margin_bottom = 39.0
 rect_scale = Vector2( 8, 8 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "10.5"
 align = 1
 
@@ -233,6 +234,9 @@ margin_left = 132.0
 margin_right = 232.0
 margin_bottom = 24.0
 text = "Main Menu"
+
+[node name="SwooshAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap/RetryButton" to="." method="_on_RetryButton_pressed"]

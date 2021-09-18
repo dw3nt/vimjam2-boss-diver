@@ -7,6 +7,8 @@ var judgeCards : = []
 var points : = []
 
 onready var anim = $AnimationPlayer
+onready var swooshAudio = $SwooshAudio
+
 onready var finalScoreWrap = $MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap
 onready var finalScoreLabel = $MarginContainer/CenterContainer/VBoxContainer/FinalScoreWrap/FinalScoreLabel
 onready var buttonsWrap = $MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap
@@ -52,7 +54,8 @@ func setLabelsViaScore(score : float) -> void:
 		finalScoreLabel.text = "FIRED!"
 		
 	finalScoreWrap.modulate = Color(1, 1, 1, 1)
-	anim.play("score_zoom_out")
+	anim.play("score_zoom_out", -1, 1.5)
+	swooshAudio.play()
 
 
 func _on_RetryButton_pressed():

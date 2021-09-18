@@ -41,3 +41,15 @@ func _on_WaterSplashSlime_AuthorLink_pressed():
 
 func _on_WaterSplashSlime_LicenseLink_pressed():
 	OS.shell_open("https://creativecommons.org/publicdomain/zero/1.0/legalcode")
+
+
+func _on_Swoosh_SoundPackLink_pressed():
+	OS.shell_open("https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes")
+
+
+func _on_Swoosh_AuthorLink_pressed():
+	OS.shell_open("https://opengameart.org/users/qubodup")
+
+
+func _on_Swoosh_LicenseLink_pressed():
+	OS.shell_open("https://creativecommons.org/publicdomain/zero/1.0/legalcode")
