@@ -18,6 +18,7 @@ var expectedInputs = 15
 var inputs : = 0
 
 onready var poseTimer = $PoseTimer as Timer
+onready var poseAudio = $PoseAudio as AudioStreamPlayer
 
 
 func enter_state(params : Dictionary = {}) -> void:
@@ -30,6 +31,8 @@ func input(event) -> void:
 		canInput = false
 		fsm.sprite.frame = choosePoseFrame()
 		poseTimer.start(inputCooldown)
+		poseAudio.pitch_scale += 0.05
+		poseAudio.play()
 		instancePoseParticles()
 	
 	

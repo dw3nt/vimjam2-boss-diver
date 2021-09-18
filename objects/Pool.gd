@@ -10,6 +10,7 @@ var animationPlayers : = []
 var animationSpeed : = 0.5
 
 onready var roughTimer = $RoughTimer as Timer
+onready var calmAudio = $CalmAudio as AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
 	animationPlayers.append($Sprite4/AnimationPlayer)
 	
 	playPoolIdle(animationSpeed)
+	calmAudio.play()
 	
 	
 func playPoolIdle(speed: float) -> void:
@@ -43,3 +45,7 @@ func _on_RoughTimer_timeout():
 		roughTimer.start(1.5)
 		
 	playPoolIdle(animationSpeed)
+
+
+func _on_CalmTimer_timeout():
+	calmAudio.play()

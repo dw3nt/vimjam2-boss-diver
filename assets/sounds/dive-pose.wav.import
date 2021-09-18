@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dive-pose.wav-6c7408559df20c54e752fe64f4db9def.sample"
+
+[deps]
+
+source_file="res://assets/sounds/dive-pose.wav"
+dest_files=[ "res://.import/dive-pose.wav-6c7408559df20c54e752fe64f4db9def.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

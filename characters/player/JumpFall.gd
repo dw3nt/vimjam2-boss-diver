@@ -6,9 +6,12 @@ const FORWARD_FORCE : = 10.0
 var shouldCheckGround : bool = false
 
 onready var groundCheckDelayTimer = $GroundCheckDelay as Timer
+onready var fallAudio = $FallAudio as AudioStreamPlayer
 
 
 func enter_state(params : Dictionary = {}) -> void:
+	fallAudio.play()
+	
 	fsm.velocity.y = -JUMP_FORCE
 	fsm.velocity.x = FORWARD_FORCE
 	

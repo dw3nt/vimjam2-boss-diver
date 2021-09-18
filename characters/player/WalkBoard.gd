@@ -6,6 +6,9 @@ var changeToWalkFall : bool = false
 var isMoving : bool = false
 var moveDir : = Vector2.ZERO
 
+onready var climbAudio = $WalkAudio as AudioStreamPlayer
+onready var audioTimer = $AudioTimer as Timer
+
 
 func enter_state(params : Dictionary = {}) -> void:
 	pass
@@ -15,6 +18,7 @@ func input(event) -> void:
 	if event.is_action_pressed("walk") && !isMoving:
 		isMoving = true
 		fsm.anim.play("walk")
+		audioTimer.start()
 	elif event.is_action_pressed("jump"):
 		fsm.change_state("Jump")
 	
@@ -36,3 +40,10 @@ func exit_state() -> void:
 	if !changeToWalkFall:
 		moveDir = Vector2.ZERO
 		fsm.velocity = Vector2.ZERO
+		
+	climbAudio.stop()
+	audioTimer.stop()
+
+
+func _on_AudioTimer2_timeout():
+	climbAudio.play()

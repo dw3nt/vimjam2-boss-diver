@@ -1,8 +1,14 @@
 extends Node2D
 
+const CLAP_AUDIO_QUIET : = -12.0
+
 var availableJudges : = []
 var currentJudges : = []
 var judgeInsts : = []
+
+onready var clapAudio = $ClapAudioPlayer
+onready var clapTimer = $ClapAudioPlayer/ClapTimer
+onready var clapTween = $ClapAudioPlayer/Tween
 
 
 func _ready() -> void:
@@ -24,7 +30,6 @@ func setJudges() -> void:
 			var judgeNum = availableJudges.pop_front()
 			judgeInsts[i].setJudgeFrames(judgeNum)
 			currentJudges.append(judgeNum)
-			print(judgeNum)
 	
 	
 func playHeadBobAtSpeed(speed : float) -> void:
@@ -36,3 +41,10 @@ func playClap() -> void:
 	for judge in judgeInsts:
 		judge.handAnim.play("clap", -1, 1.5)
 		
+	clapAudio.play()
+	clapTimer.start()
+		
+		
+func _on_ClapTimer_timeout():
+	clapTween.interpolate_property(clapAudio, "volume_db", clapAudio.volume_db, CLAP_AUDIO_QUIET, 2.5)
+	clapTween.start()

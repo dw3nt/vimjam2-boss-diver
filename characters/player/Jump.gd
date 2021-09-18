@@ -18,6 +18,8 @@ var jumpScale : float = 0.0
 
 var maxVelocityY : = 0.0
 
+onready var jumpAudio = $JumpAudio as AudioStreamPlayer
+
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.anim.play("jump_up")
@@ -31,6 +33,7 @@ func enter_state(params : Dictionary = {}) -> void:
 			maxJumpScale = range_lerp(xDiff, 0.0, 40.0, 0.15, 1.0)
 			fsm.points1 = maxJumpScale * 10
 			jumpScale += maxJumpScale
+			playAndScaleJumpAudio()
 	else:
 		fsm.change_state("JumpFall")
 	
@@ -51,6 +54,7 @@ func physics_process(delta : float) -> void:
 		fsm.change_state("JumpFall")
 	elif fsm.isOnFloor && accurateInput == 1:
 		fsm.anim.play("jump_up")
+		playAndScaleJumpAudio()
 		fsm.velocity.y = -JUMP_FORCE * jumpScale
 		
 		if abs(fsm.velocity.y) > maxVelocityY:
@@ -68,6 +72,11 @@ func physics_process(delta : float) -> void:
 	
 	for collision in fsm.slides:
 		print(collision.collider.name)
+		
+		
+func playAndScaleJumpAudio() -> void:
+	jumpAudio.play()
+	jumpAudio.pitch_scale += 0.2
 	
 
 func exit_state() -> void:
