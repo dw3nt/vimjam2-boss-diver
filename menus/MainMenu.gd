@@ -39,3 +39,11 @@ func _on_HowToButton_pressed():
 
 func _on_HowToMenu_main_menu_pressed():
 	anim.play_backwards("how_to_slide_in")
+	
+	
+func _on_CreditsButton_pressed():
+	anim.play("credits_slide_in")
+
+
+func _on_CreditsMenu_main_menu_pressed():
+	anim.play_backwards("credits_slide_in")
