@@ -79,9 +79,9 @@ remote_path = NodePath("../../../Player")
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
 
 [node name="DiveResults" parent="CanvasLayer" index="0" instance=ExtResource( 10 )]
-visible = false
 
 [connection signal="entered_pool" from="Player" to="." method="_on_Player_entered_pool"]
+[connection signal="ground_splat_finished" from="Player" to="." method="_on_Player_ground_splat_finished"]
 [connection signal="dive_finished" from="Floor" to="." method="_on_Floor_dive_finished"]
 [connection signal="main_menu_button_pressed" from="CanvasLayer/DiveResults" to="." method="_on_DiveResults_main_menu_button_pressed"]
 [connection signal="retry_button_pressed" from="CanvasLayer/DiveResults" to="." method="_on_DiveResults_retry_button_pressed"]

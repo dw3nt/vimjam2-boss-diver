@@ -1,6 +1,9 @@
 extends PlayerState
 
+signal ground_splat_finished
+
 onready var splatAudio = $SplatAudio as AudioStreamPlayer
+onready var timer = $Timer as Timer
 
 
 func enter_state(params : Dictionary = {}) -> void:
@@ -8,3 +11,8 @@ func enter_state(params : Dictionary = {}) -> void:
 	fsm.velocity = Vector2(0, GRAVITY)
 	fsm.anim.play("splat")
 	splatAudio.play()
+	timer.start()
+	
+
+func _on_Timer_timeout():
+	emit_signal("ground_splat_finished")

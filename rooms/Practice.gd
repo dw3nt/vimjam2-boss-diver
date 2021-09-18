@@ -14,6 +14,13 @@ func _ready() -> void:
 	judgesTable.setJudges()
 	
 	emit_signal("room_ready")
+	
+	
+func displayDiveResults() -> void:
+	diveResults.points.append(player.stateWrap.points1)
+	diveResults.points.append(player.stateWrap.points2)
+	diveResults.points.append(player.stateWrap.points3)
+	diveResults.anim.play("fade_in")
 
 
 func _on_Player_entered_pool(isSloppy : bool) -> void:
@@ -27,10 +34,7 @@ func _on_Player_entered_pool(isSloppy : bool) -> void:
 
 
 func _on_Floor_dive_finished():
-	diveResults.points.append(player.stateWrap.points1)
-	diveResults.points.append(player.stateWrap.points2)
-	diveResults.points.append(player.stateWrap.points3)
-	diveResults.anim.play("fade_in")
+	displayDiveResults()
 
 
 func _on_DiveResults_retry_button_pressed():
@@ -39,3 +43,8 @@ func _on_DiveResults_retry_button_pressed():
 
 func _on_DiveResults_main_menu_button_pressed():
 	emit_signal("room_change_requested", { "scene": mainMenuScene })
+
+
+func _on_Player_ground_splat_finished():
+	judgesTable.playHeadBobAtSpeed(0.0)
+	displayDiveResults()

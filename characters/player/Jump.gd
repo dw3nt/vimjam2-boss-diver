@@ -70,8 +70,8 @@ func physics_process(delta : float) -> void:
 		
 	fsm.velocity.y += GRAVITY
 	
-	for collision in fsm.slides:
-		print(collision.collider.name)
+#	for collision in fsm.slides:
+#		print(collision.collider.name)
 		
 		
 func playAndScaleJumpAudio() -> void:

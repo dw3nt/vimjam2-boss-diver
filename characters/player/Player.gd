@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 signal entered_pool
+signal ground_splat_finished
 
 export(NodePath) var followPath
 
@@ -57,3 +58,7 @@ func _physics_process(delta) -> void:
 			stateWrap.slides.append(get_slide_collision(i))
 	
 	stateWrap.isOnFloor = is_on_floor()
+
+
+func _on_GroundSplat_ground_splat_finished():
+	emit_signal("ground_splat_finished")
