@@ -1,4 +1,5 @@
 extends DiverState
+class_name ClimbLadder
 
 const CLIMB_SPEED : = 80
 
@@ -14,10 +15,14 @@ var path : Path2D
 var pathFollow : PathFollow2D
 var nextPointIndex : int = 0
 
+onready var climbAudio = $ClimbAudio as AudioStreamPlayer
+onready var audioTimer = $AudioTimer as Timer
+
 
 func enter_state(params : Dictionary = {}) -> void:
-	path = pathFollow.get_parent()
+	pathFollow = path.get_child(0)
 	fsm.anim.play("walk")
+	audioTimer.start()
 	
 	
 func process(delta : float) -> void:
@@ -35,3 +40,11 @@ func process(delta : float) -> void:
 func updateClimbAnimation() -> void:
 	if pathAnimMap.keys().has(nextPointIndex):
 		fsm.anim.play(pathAnimMap[nextPointIndex])
+		
+		
+func exit_state() -> void:
+	audioTimer.stop()
+
+
+func _on_AudioTimer_timeout():
+	climbAudio.play()

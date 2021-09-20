@@ -3,8 +3,6 @@ class_name Judge
 
 const HAND_OFFSET_INCREMENT : = 16
 
-export(NodePath) var lookTargetPath
-
 var judgeNumber : int = -1
 var lookTarget
 var handOffsetSet : = false
@@ -17,10 +15,6 @@ onready var handAnim = $HandAnimation as AnimationPlayer
 
 onready var leftHand = $LeftHand as Sprite
 onready var rightHand = $RightHand as Sprite
-
-
-func _ready() -> void:
-	lookTarget = get_node(lookTargetPath)
 	
 	
 func setJudgeFrames(number : int) -> void:	

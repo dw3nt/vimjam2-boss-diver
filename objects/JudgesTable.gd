@@ -2,6 +2,7 @@ extends Node2D
 
 const CLAP_AUDIO_QUIET : = -12.0
 
+var judgeLookTarget : Diver
 var availableJudges : = []
 var currentJudges : = []
 var judgeInsts : = []
@@ -30,6 +31,8 @@ func setJudges() -> void:
 			var judgeNum = availableJudges.pop_front()
 			judgeInsts[i].setJudgeFrames(judgeNum)
 			currentJudges.append(judgeNum)
+			
+		judgeInsts[i].lookTarget = judgeLookTarget
 	
 	
 func playHeadBobAtSpeed(speed : float) -> void:

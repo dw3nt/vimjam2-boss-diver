@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/state_machine/BaseStateMachine.gd"
 }, {
+"base": "DiverState",
+"class": "ClimbLadder",
+"language": "GDScript",
+"path": "res://characters/diver/ClimbLadder.gd"
+}, {
+"base": "DiverState",
+"class": "Dive",
+"language": "GDScript",
+"path": "res://characters/diver/Dive.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Diver",
 "language": "GDScript",
@@ -44,44 +54,70 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/Floor.gd"
 }, {
+"base": "DiverState",
+"class": "GracefulEntrance",
+"language": "GDScript",
+"path": "res://characters/diver/GracefulEntrance.gd"
+}, {
+"base": "DiverState",
+"class": "GroundSplat",
+"language": "GDScript",
+"path": "res://characters/diver/GroundSplat.gd"
+}, {
 "base": "Sprite",
 "class": "Judge",
 "language": "GDScript",
 "path": "res://characters/Judge.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "Player",
+"base": "DiverState",
+"class": "Jump",
 "language": "GDScript",
-"path": "res://characters/player/Player.gd"
+"path": "res://characters/diver/Jump.gd"
 }, {
-"base": "BaseState",
-"class": "PlayerState",
+"base": "DiverState",
+"class": "JumpFall",
 "language": "GDScript",
-"path": "res://characters/player/PlayerState.gd"
-}, {
-"base": "BaseStateMachine",
-"class": "PlayerStateMachine",
-"language": "GDScript",
-"path": "res://characters/player/PlayerStateMachine.gd"
+"path": "res://characters/diver/JumpFall.gd"
 }, {
 "base": "Area2D",
 "class": "Pool",
 "language": "GDScript",
 "path": "res://objects/Pool.gd"
+}, {
+"base": "DiverState",
+"class": "SloppyEntrance",
+"language": "GDScript",
+"path": "res://characters/diver/SloppyEntrance.gd"
+}, {
+"base": "DiverState",
+"class": "WalkBoard",
+"language": "GDScript",
+"path": "res://characters/diver/WalkBoard.gd"
+}, {
+"base": "DiverState",
+"class": "WalkFall",
+"language": "GDScript",
+"path": "res://characters/diver/WalkFall.gd"
 } ]
 _global_script_class_icons={
 "BaseState": "",
 "BaseStateMachine": "",
+"ClimbLadder": "",
+"Dive": "",
 "Diver": "",
 "DiverState": "",
 "DiverStateMachine": "",
 "DivingBoard": "",
 "Floor": "",
+"GracefulEntrance": "",
+"GroundSplat": "",
 "Judge": "",
-"Player": "",
-"PlayerState": "",
-"PlayerStateMachine": "",
-"Pool": ""
+"Jump": "",
+"JumpFall": "",
+"Pool": "",
+"SloppyEntrance": "",
+"WalkBoard": "",
+"WalkFall": ""
 }
 
 [application]
@@ -204,5 +240,5 @@ scroll_skip={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.501961, 0.501961, 0.501961, 1 )
+environment/default_clear_color=Color( 0.372549, 0.803922, 0.894118, 1 )
 environment/default_environment="res://default_env.tres"

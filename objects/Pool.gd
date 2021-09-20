@@ -28,7 +28,7 @@ func playPoolIdle(speed: float) -> void:
 		anim.play("pool_idle", -1, speed)
 
 
-func _on_Pool_body_entered(body : Player):
+func _on_Pool_body_entered(body : Diver):
 	if body:
 		var sloppy = body.enteredPool()
 		if sloppy:

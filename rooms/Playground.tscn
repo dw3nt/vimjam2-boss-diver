@@ -15,7 +15,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 8, 144, 0, 0, 0, 0, 57, 144, 0, 0, 0, 0, 64, 105, 0, 0, 0, 0, 72, 67, 0, 0, 0, 0, 75, 58, 0, 0, 0, 0, 89, 58 )
+"points": PoolVector2Array( 0, 0, 0, 0, -71, 144, 0, 0, 0, 0, 57, 144, 0, 0, 0, 0, 64, 105, 0, 0, 0, 0, 72, 67, 0, 0, 0, 0, 75, 58, 0, 0, 0, 0, 89, 58 )
 }
 
 [node name="Playground" instance=ExtResource( 1 )]
@@ -45,7 +45,7 @@ position = Vector2( 43, 32 )
 position = Vector2( 214, 172 )
 
 [node name="Diver" parent="." index="5" instance=ExtResource( 3 )]
-position = Vector2( 8, 144 )
+position = Vector2( -71, 144 )
 followPath = NodePath("../ClimbLadderPath/PathFollow2D")
 
 [node name="Camera2D" parent="Diver" index="4" instance=ExtResource( 12 )]
@@ -58,7 +58,7 @@ z_index = 100
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ClimbLadderPath" index="0"]
-position = Vector2( 8, 144 )
+position = Vector2( -71, 144 )
 rotate = false
 loop = false
 
@@ -70,7 +70,6 @@ remote_path = NodePath("../../../Diver")
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="9"]
 
 [node name="DiveResults" parent="CanvasLayer" index="0" instance=ExtResource( 10 )]
-visible = false
 
 [connection signal="entered_pool" from="Diver" to="." method="_on_Diver_entered_pool"]
 [connection signal="dive_finished" from="Floor" to="." method="_on_Floor_dive_finished"]

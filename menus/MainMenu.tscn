@@ -181,50 +181,55 @@ text = "by Dual Wield Entertainment"
 align = 1
 
 [node name="ButtonsWrap" type="VBoxContainer" parent="MenuContainer/CenterContainer/VBoxContainer" index="1"]
-margin_left = 58.0
+margin_left = 6.0
 margin_top = 40.0
-margin_right = 158.0
+margin_right = 210.0
 margin_bottom = 154.0
 size_flags_horizontal = 4
 custom_constants/separation = 6
 
-[node name="PlayButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="0" instance=ExtResource( 5 )]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="0"]
+margin_right = 204.0
+margin_bottom = 24.0
+
+[node name="PlayButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer" index="0" instance=ExtResource( 5 )]
 margin_left = 0.0
 margin_right = 100.0
 margin_bottom = 24.0
 custom_styles/hover = ExtResource( 8 )
 text = "Dive"
 
+[node name="PracticeButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer" index="1" instance=ExtResource( 5 )]
+margin_left = 104.0
+margin_right = 204.0
+margin_bottom = 24.0
+custom_styles/hover = ExtResource( 8 )
+text = "Practice"
+
 [node name="HowToButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="1" instance=ExtResource( 5 )]
-margin_left = 0.0
+margin_left = 52.0
 margin_top = 30.0
-margin_right = 100.0
+margin_right = 152.0
 margin_bottom = 54.0
+size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 8 )
 text = "How To"
 
 [node name="CreditsButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="2" instance=ExtResource( 5 )]
-margin_left = 0.0
+margin_left = 52.0
 margin_top = 60.0
-margin_right = 100.0
+margin_right = 152.0
 margin_bottom = 84.0
+size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 8 )
 text = "Credits"
 
-[node name="PracticeButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="3" instance=ExtResource( 5 )]
-visible = false
-margin_left = 0.0
-margin_top = 32.0
-margin_right = 100.0
-margin_bottom = 56.0
-custom_styles/hover = ExtResource( 8 )
-text = "Practice"
-
-[node name="QuitButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="4" instance=ExtResource( 5 )]
-margin_left = 0.0
+[node name="QuitButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="3" instance=ExtResource( 5 )]
+margin_left = 52.0
 margin_top = 90.0
-margin_right = 100.0
+margin_right = 152.0
 margin_bottom = 114.0
+size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 8 )
 text = "Quit"
 
@@ -242,10 +247,10 @@ margin_top = -10.0
 margin_right = -330.0
 margin_bottom = -10.0
 
-[connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer/PracticeButton" to="." method="_on_PracticeButton_pressed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HowToButton" to="." method="_on_HowToButton_pressed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/CreditsButton" to="." method="_on_CreditsButton_pressed"]
-[connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/PracticeButton" to="." method="_on_PracticeButton_pressed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="scroll_finished" from="StoryIntro" to="." method="_on_StoryIntro_scroll_finished"]
 [connection signal="main_menu_pressed" from="HowToMenu" to="." method="_on_HowToMenu_main_menu_pressed"]

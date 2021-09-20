@@ -1,4 +1,5 @@
 extends DiverState
+class_name Dive
 
 const POSE_PARTICLES_SCENE = preload("res://effects/PoseParticles.tscn")
 
@@ -18,19 +19,11 @@ var expectedInputs = 15
 var inputs : = 0
 
 onready var poseTimer = $PoseTimer as Timer
+onready var poseAudio = $PoseAudio as AudioStreamPlayer
 
 
 func enter_state(params : Dictionary = {}) -> void:
 	fsm.velocity.x = FORWARD_DIVE_SPEED
-	
-	
-func input(event) -> void:
-	if canInput && event.is_action_pressed("walk") || event.is_action_pressed("jump"):
-		inputs += 1
-		canInput = false
-		fsm.sprite.frame = choosePoseFrame()
-		poseTimer.start(inputCooldown)
-		instancePoseParticles()
 	
 	
 func physics_process(delta : float) -> void:
