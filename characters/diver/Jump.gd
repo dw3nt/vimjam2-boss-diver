@@ -63,6 +63,16 @@ func physics_process(delta : float) -> void:
 	
 #	for collision in fsm.slides:
 #		print(collision.collider.name)
+
+
+func calculateJumpInput() -> void:
+	if boardInRange && fsm.velocity.y >= 0:
+		accurateInput = 1
+		var yDiff = boardPosition.y - global_position.y
+		accuracy = range_lerp(yDiff, boardHeight, boardDetectHeight, maxJumpScale, 0)
+		jumpScale += accuracy
+	else:
+		accurateInput = 0
 		
 		
 func playAndScaleJumpAudio() -> void:

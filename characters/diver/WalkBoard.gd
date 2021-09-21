@@ -15,6 +15,12 @@ func enter_state(params : Dictionary = {}) -> void:
 	pass
 	
 	
+func startMoving() -> void:
+	isMoving = true
+	fsm.anim.play("walk")
+	audioTimer.start()
+	
+	
 func physics_process(delta : float) -> void:
 	if isMoving:
 		fsm.velocity.x = WALK_SPEED

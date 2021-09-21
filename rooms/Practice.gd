@@ -1,6 +1,6 @@
 extends "res://rooms/BaseRoom.gd"
 
-const DIVER_SCENE = preload("res://characters/player/Player.tscn")
+const DIVER_SCENE = preload("res://characters/competitor/Competitor.tscn")
 const CAMERA_SCENE = preload("res://objects/Camera2D.tscn")
 
 export(String, FILE, "*.tscn") var mainMenuScene

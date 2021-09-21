@@ -33,6 +33,16 @@ func physics_process(delta : float) -> void:
 	if !isDiving && fsm.velocity.y >= 0:
 		fsm.anim.play("dive")
 		isDiving = true
+		
+		
+func strikePose() -> void:
+	inputs += 1
+	canInput = false
+	fsm.sprite.frame = choosePoseFrame()
+	poseTimer.start(inputCooldown)
+	poseAudio.pitch_scale += 0.05
+	poseAudio.play()
+	instancePoseParticles()
 	
 	
 func enteredPool() -> bool:
@@ -65,3 +75,4 @@ func exit_state() -> void:
 	if inputs > expectedInputs:
 		expectedInputs = inputs	# aka - you get 10 points for going over the expected
 	fsm.points3 = range_lerp(inputs, 0.0, expectedInputs, 0.0, 10.0)
+	poseTimer.stop()
