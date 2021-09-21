@@ -1,6 +1,6 @@
 extends "res://rooms/BaseRoom.gd"
 
-const DIVER_SCENE = preload("res://characters/competitor/Competitor.tscn")
+const DIVER_SCENE = preload("res://characters/player/Player.tscn")
 const CAMERA_SCENE = preload("res://objects/Camera2D.tscn")
 
 export(String, FILE, "*.tscn") var mainMenuScene
@@ -19,7 +19,6 @@ func _ready() -> void:
 
 	initDiver()
 	judgesTable.setJudges()
-	
 	
 	emit_signal("room_ready")
 	

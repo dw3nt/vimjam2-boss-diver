@@ -4,6 +4,7 @@ signal scroll_finished
 
 export(float) var initScrollSpeed : = 30.0
 
+var isScrolling : bool = false
 var scrollSpeed : float = initScrollSpeed
 var scrollSkipRequested : bool = false
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	
 func startScroll() -> void:
 	set_process(true)
+	isScrolling = true
 
 
 func _input(event) -> void:
@@ -43,6 +45,6 @@ func _process(delta : float) -> void:
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	if !scrollSkipRequested:
+	if !scrollSkipRequested && isScrolling:
 		emit_signal("scroll_finished")
 		scrollSkipRequested = true

@@ -234,6 +234,8 @@ custom_styles/hover = ExtResource( 8 )
 text = "Quit"
 
 [node name="StoryIntro" parent="." index="4" instance=ExtResource( 9 )]
+margin_top = 150.0
+margin_bottom = 150.0
 
 [node name="HowToMenu" parent="." index="5" instance=ExtResource( 10 )]
 margin_left = 330.0
