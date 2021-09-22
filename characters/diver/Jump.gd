@@ -32,7 +32,7 @@ func enter_state(params : Dictionary = {}) -> void:
 			fsm.change_state("JumpFall")
 		else:
 			maxJumpScale = range_lerp(xDiff, 0.0, 40.0, 0.15, 1.0)
-			fsm.points1 = maxJumpScale * 10
+			fsm.points1 = clamp(maxJumpScale * 10, 0.0, 10.0)
 			jumpScale += maxJumpScale
 			playAndScaleJumpAudio()
 	else:
@@ -81,5 +81,5 @@ func playAndScaleJumpAudio() -> void:
 	
 
 func exit_state() -> void:
-	fsm.points2 = range_lerp(maxVelocityY, 0.0, JUMP_FORCE * 3, 0.0, 10.0)
+	fsm.points2 = clamp(range_lerp(maxVelocityY, 0.0, JUMP_FORCE * 3, 0.0, 10.0), 0.0, 10.0)
 		

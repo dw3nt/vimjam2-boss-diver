@@ -128,6 +128,7 @@ position = Vector2( 0, 19 )
 
 [node name="Pool" parent="Background" index="5" instance=ExtResource( 7 )]
 position = Vector2( 120, 172 )
+z_index = 100
 
 [node name="WashOutBackground" type="ColorRect" parent="." index="2"]
 anchor_right = 1.0
@@ -235,8 +236,8 @@ custom_styles/hover = ExtResource( 8 )
 text = "Quit"
 
 [node name="StoryIntro" parent="." index="4" instance=ExtResource( 9 )]
-margin_top = 150.0
-margin_bottom = 150.0
+margin_top = 170.0
+margin_bottom = 170.0
 
 [node name="HowToMenu" parent="." index="5" instance=ExtResource( 10 )]
 margin_left = 330.0
