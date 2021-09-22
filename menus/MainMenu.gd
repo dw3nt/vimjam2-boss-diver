@@ -6,6 +6,7 @@ export(String, FILE, "*.tscn") var practiceScene
 onready var menuContainer = $MenuContainer
 onready var anim = $AnimationPlayer
 onready var storyIntro = $StoryIntro
+onready var competitorCard = $CompetitorCard
 
 
 func _ready() -> void:
@@ -13,7 +14,9 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	anim.play("fade_out")
+	competitorCard.data = ChallengerTracker.getCurrentChallenger()
+	competitorCard.initCard()
+	anim.play("challenger_card_slide_in")
 
 
 func _on_PracticeButton_pressed() -> void:
@@ -48,3 +51,14 @@ func _on_CreditsButton_pressed():
 
 func _on_CreditsMenu_main_menu_pressed():
 	anim.play_backwards("credits_slide_in")
+	
+	
+func _on_CompetitorCard_challenge_pressed():
+	emit_signal("room_change_requested", {
+		"scene": interviewScene,
+		"transition": transition
+	})
+
+
+func _on_CompetitorCard_main_menu_pressed():
+	anim.play_backwards("challenger_card_slide_in")

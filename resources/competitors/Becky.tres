@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://resources/CompetitorData.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/diver2.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+image = ExtResource( 2 )
+name = "Becky"
+description = "That may not actually be her name"
+difficulty = 1
+walkDistances = [ 25, 45 ]
+jumpHeightPrecentages = [ 0.4, 0.6 ]
+poseTimeCooldowns = [ 0.5, 1.0 ]

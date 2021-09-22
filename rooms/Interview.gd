@@ -6,7 +6,7 @@ const INTERVIEW_RESULTS_SCENE = "res://menus/InterviewResults.tscn"
 const PLAYER_SCENE = preload("res://characters/player/Player.tscn")
 const COMPETITOR_SCENE = preload("res://characters/competitor/Competitor.tscn")
 
-const MAX_ROUNDS : = 2
+const MAX_ROUNDS : = 3
 
 var victories : = 0
 var roundNumber : = 0

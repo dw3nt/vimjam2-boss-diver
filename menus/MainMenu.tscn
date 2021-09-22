@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://menus/BaseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://menus/MainMenu.gd" type="Script" id=2]
@@ -7,10 +7,38 @@
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://rooms/Background.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/Pool.tscn" type="PackedScene" id=7]
-[ext_resource path="res://menus/base_button_hover-dark.tres" type="StyleBox" id=8]
+[ext_resource path="res://menus/CompetitorCard.tscn" type="PackedScene" id=8]
 [ext_resource path="res://menus/StoryIntro.tscn" type="PackedScene" id=9]
 [ext_resource path="res://menus/HowToMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://menus/CreditsMenu.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Animation" id=5]
+resource_name = "challenger_card_slide_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CompetitorCard:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -200 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuContainer:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -10 ), Vector2( 0, 190 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "credits_slide_in"
@@ -119,6 +147,7 @@ interviewScene = "res://rooms/Interview.tscn"
 practiceScene = "res://rooms/Practice.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+anims/challenger_card_slide_in = SubResource( 5 )
 anims/credits_slide_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
 anims/how_to_slide_in = SubResource( 3 )
@@ -198,14 +227,12 @@ margin_bottom = 24.0
 margin_left = 0.0
 margin_right = 100.0
 margin_bottom = 24.0
-custom_styles/hover = ExtResource( 8 )
 text = "Dive"
 
 [node name="PracticeButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer" index="1" instance=ExtResource( 5 )]
 margin_left = 104.0
 margin_right = 204.0
 margin_bottom = 24.0
-custom_styles/hover = ExtResource( 8 )
 text = "Practice"
 
 [node name="HowToButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="1" instance=ExtResource( 5 )]
@@ -214,7 +241,6 @@ margin_top = 30.0
 margin_right = 152.0
 margin_bottom = 54.0
 size_flags_horizontal = 4
-custom_styles/hover = ExtResource( 8 )
 text = "How To"
 
 [node name="CreditsButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="2" instance=ExtResource( 5 )]
@@ -223,7 +249,6 @@ margin_top = 60.0
 margin_right = 152.0
 margin_bottom = 84.0
 size_flags_horizontal = 4
-custom_styles/hover = ExtResource( 8 )
 text = "Credits"
 
 [node name="QuitButton" parent="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="3" instance=ExtResource( 5 )]
@@ -232,7 +257,6 @@ margin_top = 90.0
 margin_right = 152.0
 margin_bottom = 114.0
 size_flags_horizontal = 4
-custom_styles/hover = ExtResource( 8 )
 text = "Quit"
 
 [node name="StoryIntro" parent="." index="4" instance=ExtResource( 9 )]
@@ -251,6 +275,10 @@ margin_top = -10.0
 margin_right = -330.0
 margin_bottom = -10.0
 
+[node name="CompetitorCard" parent="." index="7" instance=ExtResource( 8 )]
+margin_top = -200.0
+margin_bottom = -200.0
+
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HBoxContainer/PracticeButton" to="." method="_on_PracticeButton_pressed"]
 [connection signal="pressed" from="MenuContainer/CenterContainer/VBoxContainer/ButtonsWrap/HowToButton" to="." method="_on_HowToButton_pressed"]
@@ -259,3 +287,5 @@ margin_bottom = -10.0
 [connection signal="scroll_finished" from="StoryIntro" to="." method="_on_StoryIntro_scroll_finished"]
 [connection signal="main_menu_pressed" from="HowToMenu" to="." method="_on_HowToMenu_main_menu_pressed"]
 [connection signal="main_menu_pressed" from="CreditsMenu" to="." method="_on_CreditsMenu_main_menu_pressed"]
+[connection signal="challenge_pressed" from="CompetitorCard" to="." method="_on_CompetitorCard_challenge_pressed"]
+[connection signal="main_menu_pressed" from="CompetitorCard" to="." method="_on_CompetitorCard_main_menu_pressed"]

@@ -7,7 +7,7 @@ signal main_menu_button_pressed
 const CAMERA_SCENE = preload("res://objects/Camera2D.tscn")
 
 var diverScene : PackedScene = preload("res://characters/competitor/Competitor.tscn")
-var diver : Diver
+var diver
 
 onready var judgesTable = $JudgesTable
 onready var climbLadderPath = $ClimbLadderPath
@@ -33,6 +33,9 @@ func initDiver() -> void:
 	add_child(diver)
 	remoteTransform.remote_path = remoteTransform.get_path_to(diver)
 	call_deferred("initCamera")
+	
+	if diver is Competitor:
+		diver.setCompetitorData(ChallengerTracker.getCurrentChallenger())
 	
 	
 func initCamera() -> void:

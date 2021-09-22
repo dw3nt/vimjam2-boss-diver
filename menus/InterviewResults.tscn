@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/BaseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://menus/InterviewResults.gd" type="Script" id=2]
 [ext_resource path="res://menus/default_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/fonts/PixelOperatorMono8.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://menus/base_button_hover-dark.tres" type="StyleBox" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -49,5 +48,4 @@ margin_top = 20.0
 margin_right = 186.0
 margin_bottom = 44.0
 size_flags_horizontal = 4
-custom_styles/hover = ExtResource( 6 )
 text = "Main Menu"

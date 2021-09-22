@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://resources/CompetitorData.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/diver.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+image = ExtResource( 2 )
+name = "Chad"
+description = "Insits it's pronounced Chaaaaaad."
+difficulty = 3
+walkDistances = [ 30, 68 ]
+jumpHeightPrecentages = [ 0.5, 0.9 ]
+poseTimeCooldowns = [ 0.2, 0.5 ]

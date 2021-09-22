@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://resources/CompetitorData.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/diver.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+image = ExtResource( 2 )
+name = "Milo"
+description = "Champion the last 6 years"
+difficulty = 5
+walkDistances = [ 40, 68 ]
+jumpHeightPrecentages = [ 0.4, 0.9 ]
+poseTimeCooldowns = [ 0.2, 0.4 ]

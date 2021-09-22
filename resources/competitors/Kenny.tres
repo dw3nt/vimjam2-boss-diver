@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://resources/CompetitorData.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/diver.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+image = ExtResource( 2 )
+name = "Kenny"
+description = "Too cool for school"
+difficulty = 4
+walkDistances = [ 40, 55 ]
+jumpHeightPrecentages = [ 0.6, 1.2 ]
+poseTimeCooldowns = [ 0.4, 0.6 ]
