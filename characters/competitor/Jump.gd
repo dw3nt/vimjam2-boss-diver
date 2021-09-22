@@ -1,20 +1,33 @@
 extends Jump
 
-const JUMP_TIMES : = [0.2, 0.4]
+const JUMP_HEIGHT_PERCENTAGES = [0.3, 0.6]
 
-onready var jumpTimer = $JumpTimer as Timer
+var wasMovingDown : bool = false
+var hasCalculatedJump : bool = false
+
+var startY : float
+var maxHeightY : float
+
+var inputPercent : float = 0.0
+var inputHeight : float = 0.0
 
 
 func enter_state(params : Dictionary = {}) -> void:
 	.enter_state(params)
-	jumpTimer.start(rand_range(JUMP_TIMES[0], JUMP_TIMES[1]) * jumpNumber)
-
-
-func _on_JumpTimer_timeout() -> void:
-	calculateJumpInput()
-	jumpTimer.start(rand_range(JUMP_TIMES[0], JUMP_TIMES[1]) * jumpNumber)
+	startY = global_position.y
 	
 	
-func exit_state() -> void:
-	.exit_state()
-	jumpTimer.stop()
+func physics_process(delta : float) -> void:
+	.physics_process(delta)
+	
+	if fsm.velocity.y > 0 && !wasMovingDown:
+		hasCalculatedJump = false
+		maxHeightY = global_position.y
+		inputPercent = rand_range(JUMP_HEIGHT_PERCENTAGES[0], JUMP_HEIGHT_PERCENTAGES[1])
+		inputHeight = range_lerp(inputPercent, 0.0, 1.0, maxHeightY, startY)
+		
+	if fsm.velocity.y > 0 && global_position.y >= inputHeight && !hasCalculatedJump:
+		hasCalculatedJump = true
+		calculateJumpInput()
+	
+	wasMovingDown = sign(fsm.velocity.y) > 0

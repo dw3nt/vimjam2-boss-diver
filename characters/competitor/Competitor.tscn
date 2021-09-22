@@ -24,8 +24,6 @@ one_shot = true
 [node name="Jump" parent="DiverStateMachine" index="3"]
 script = ExtResource( 4 )
 
-[node name="JumpTimer" type="Timer" parent="DiverStateMachine/Jump" index="1"]
-
 [node name="Dive" parent="DiverStateMachine" index="5"]
 script = ExtResource( 5 )
 
@@ -33,5 +31,4 @@ script = ExtResource( 5 )
 one_shot = true
 
 [connection signal="timeout" from="DiverStateMachine/WalkBoard/MoveTimer" to="DiverStateMachine/WalkBoard" method="_on_MoveTimer_timeout"]
-[connection signal="timeout" from="DiverStateMachine/Jump/JumpTimer" to="DiverStateMachine/Jump" method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="DiverStateMachine/Dive/StrikePoseTimer" to="DiverStateMachine/Dive" method="_on_StrikePoseTimer_timeout"]
