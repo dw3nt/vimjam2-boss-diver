@@ -115,6 +115,7 @@ font_data = ExtResource( 3 )
 theme = ExtResource( 4 )
 script = ExtResource( 2 )
 transition = 1
+interviewScene = "res://rooms/Interview.tscn"
 practiceScene = "res://rooms/Practice.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]

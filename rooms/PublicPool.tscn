@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://objects/Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/DiveResults.tscn" type="PackedScene" id=2]
+[ext_resource path="res://rooms/BaseRoom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/Pool.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/DivingBoard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/Ground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/JudgesTable.tscn" type="PackedScene" id=7]
+[ext_resource path="res://rooms/Background.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/Ladder.tscn" type="PackedScene" id=9]
+[ext_resource path="res://rooms/PublicPool.gd" type="Script" id=10]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 8, 144, 0, 0, 0, 0, 57, 144, 0, 0, 0, 0, 64, 105, 0, 0, 0, 0, 72, 67, 0, 0, 0, 0, 75, 58, 0, 0, 0, 0, 89, 58 )
+}
+
+[node name="PublicPool" instance=ExtResource( 3 )]
+script = ExtResource( 10 )
+
+[node name="Background" parent="." index="0" instance=ExtResource( 8 )]
+
+[node name="DivingBoard" parent="." index="1" instance=ExtResource( 5 )]
+position = Vector2( 114, 62 )
+
+[node name="JudgesTable" parent="." index="2" instance=ExtResource( 7 )]
+position = Vector2( 189, 127 )
+
+[node name="Ladder" parent="." index="3" instance=ExtResource( 9 )]
+position = Vector2( 43, 32 )
+
+[node name="Pool" parent="." index="4" instance=ExtResource( 4 )]
+position = Vector2( 214, 172 )
+
+[node name="Ground" parent="." index="5" instance=ExtResource( 6 )]
+position = Vector2( 48, 168 )
+z_index = 100
+
+[node name="ClimbLadderPath" type="Path2D" parent="." index="6"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ClimbLadderPath" index="0"]
+position = Vector2( 8, 144 )
+rotate = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="ClimbLadderPath/PathFollow2D" index="0"]
+
+[node name="Floor" parent="." index="7" instance=ExtResource( 1 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="8"]
+
+[node name="DiveResults" parent="CanvasLayer" index="0" instance=ExtResource( 2 )]
+
+[connection signal="dive_finished" from="Floor" to="." method="_on_Floor_dive_finished"]
+[connection signal="main_menu_button_pressed" from="CanvasLayer/DiveResults" to="." method="_on_DiveResults_main_menu_button_pressed"]
+[connection signal="retry_button_pressed" from="CanvasLayer/DiveResults" to="." method="_on_DiveResults_retry_button_pressed"]
+
+[editable path="JudgesTable"]

@@ -1,5 +1,6 @@
 extends "res://menus/BaseMenu.gd"
 
+export(String, FILE, "*.tscn") var interviewScene
 export(String, FILE, "*.tscn") var practiceScene
 
 onready var menuContainer = $MenuContainer
@@ -28,7 +29,7 @@ func _on_QuitButton_pressed() -> void:
 
 func _on_StoryIntro_scroll_finished():
 	emit_signal("room_change_requested", {
-		"scene": practiceScene,
+		"scene": interviewScene,
 		"transition": transition
 	})
 

@@ -74,5 +74,5 @@ func _on_PoseTimer_timeout() -> void:
 func exit_state() -> void:
 	if inputs > expectedInputs:
 		expectedInputs = inputs	# aka - you get 10 points for going over the expected
-	fsm.points3 = range_lerp(inputs, 0.0, expectedInputs, 0.0, 10.0)
+	fsm.points3 = clamp(range_lerp(inputs, 0.0, expectedInputs, 0.0, 10.0), 0.0, 10.0)
 	poseTimer.stop()

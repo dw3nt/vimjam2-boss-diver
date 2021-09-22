@@ -3,6 +3,8 @@ extends Control
 signal retry_button_pressed
 signal main_menu_button_pressed
 
+var displayPoints : bool = false
+
 var judgeCards : = []
 var points : = []
 
@@ -35,10 +37,20 @@ func _on_AnimationPlayer_animation_finished(anim_name) -> void:
 		
 
 func _on_Card3Flip_card_flipped(anim_name) -> void:
-	var totalPoints = points[0] + points[1] + points[2]
-	setLabelsViaScore(totalPoints)
+	var totalPoints = calculateScore()
+	finalScoreLabel.text = str("%.1f" % totalPoints)
+#	if displayPoints:
+#		finalScoreLabel.text = str("%.1f" % totalPoints)
+#	else:
+#		setLabelsViaScore(totalPoints)
+		
+	swooshInFinalScore()
 	finalScoreWrap.modulate = Color(1, 1, 1, 1)
 	buttonsWrap.modulate = Color(1, 1, 1, 1)
+	
+	
+func calculateScore() -> float:
+	return points[0] + points[1] + points[2]
 	
 	
 func setLabelsViaScore(score : float) -> void:
@@ -53,6 +65,8 @@ func setLabelsViaScore(score : float) -> void:
 	else:
 		finalScoreLabel.text = "FIRED!"
 		
+		
+func swooshInFinalScore() -> void:
 	finalScoreWrap.modulate = Color(1, 1, 1, 1)
 	anim.play("score_zoom_out", -1, 1.5)
 	swooshAudio.play()
