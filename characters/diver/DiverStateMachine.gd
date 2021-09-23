@@ -12,3 +12,7 @@ var points2 = 0.0 	# how high you jump
 var points3 = 0.0	# how many points (and bonus if graceful dive)
 
 var climbLadderPath
+
+
+func getPointsArray() -> Array:
+	return [points1, points2, points3]

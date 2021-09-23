@@ -11,6 +11,14 @@ const CHALLENGERS : Array = [
 var currentChallengerData : Array = [null, null, null, null, null]
 var currentChallengerKey : int = 0
 
+var interviewPoints = [
+	{ "player": [], "competitor": [] },
+	{ "player": [], "competitor": [] },
+	{ "player": [], "competitor": [] },
+	{ "player": [], "competitor": [] },
+	{ "player": [], "competitor": [] },
+]
+
 
 func getCurrentChallenger() -> CompetitorData:
 	var currentChallenger = currentChallengerData[currentChallengerKey]
@@ -23,9 +31,24 @@ func getCurrentChallenger() -> CompetitorData:
 func chooseChallenger() -> CompetitorData:
 	var potentialChallengers = []
 	for challenger in CHALLENGERS:
-		print(challenger.difficulty)
 		if challenger.difficulty == (currentChallengerKey + 1):
 			potentialChallengers.append(challenger)
 			
 	currentChallengerData[currentChallengerKey] = potentialChallengers[randi() % potentialChallengers.size()]
 	return currentChallengerData[currentChallengerKey]
+	
+	
+func getRoundTotalScore(challengerOffset : int, diverKey : String, roundOffset : int) -> float:
+	var totalPoints = 0.0
+	for points in interviewPoints[challengerOffset][diverKey][roundOffset]:
+		totalPoints += points
+		
+	return totalPoints
+	
+	
+func getInterviewTotalScore(challengerOffset : int, diverKey : String) -> float:
+	var totalPoints = 0.0
+	for roundOffset in range(interviewPoints[challengerOffset][diverKey].size()):
+		totalPoints += getRoundTotalScore(challengerOffset, diverKey, roundOffset)
+		
+	return totalPoints

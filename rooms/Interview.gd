@@ -6,7 +6,7 @@ const INTERVIEW_RESULTS_SCENE = "res://menus/InterviewResults.tscn"
 const PLAYER_SCENE = preload("res://characters/player/Player.tscn")
 const COMPETITOR_SCENE = preload("res://characters/competitor/Competitor.tscn")
 
-const MAX_ROUNDS : = 3
+const MAX_ROUNDS : = 2
 
 var victories : = 0
 var roundNumber : = 0
@@ -46,6 +46,13 @@ func _on_PublicPool_retry_button_pressed():
 		emit_signal("room_change_requested", { "scene": INTERVIEW_RESULTS_SCENE })
 	else:	
 		emit_signal("room_change_requested", { "scene": filename, "params": createParams() })
+		
+	if publicPool.diverScene == PLAYER_SCENE:
+		ChallengerTracker.interviewPoints[ChallengerTracker.currentChallengerKey].player.append(publicPool.diver.stateWrap.getPointsArray())
+	else:
+		ChallengerTracker.interviewPoints[ChallengerTracker.currentChallengerKey].competitor.append(publicPool.diver.stateWrap.getPointsArray())
+		
+	print(ChallengerTracker.interviewPoints[ChallengerTracker.currentChallengerKey])
 	
 	
 func createParams() -> Dictionary:

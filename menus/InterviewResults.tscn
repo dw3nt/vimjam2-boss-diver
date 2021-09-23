@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/BaseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://menus/InterviewResults.gd" type="Script" id=2]
@@ -9,6 +9,14 @@
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+font_data = ExtResource( 4 )
+
 [node name="InterviewResults" instance=ExtResource( 1 )]
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
@@ -17,35 +25,149 @@ script = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 16
-custom_constants/margin_top = 16
+custom_constants/margin_top = 4
 custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
+custom_constants/margin_bottom = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer" index="0"]
 margin_left = 16.0
-margin_top = 16.0
+margin_top = 4.0
 margin_right = 304.0
-margin_bottom = 164.0
+margin_bottom = 176.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" index="0"]
-margin_left = 8.0
-margin_top = 52.0
-margin_right = 280.0
-margin_bottom = 96.0
+margin_left = 16.0
+margin_top = 18.0
+margin_right = 272.0
+margin_bottom = 154.0
+custom_constants/separation = 20
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="0"]
-margin_right = 272.0
+margin_right = 256.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 1 )
-text = "Interview Results"
+text = "Results"
+align = 1
 
-[node name="MenuButton" parent="MarginContainer/CenterContainer/VBoxContainer" index="1" instance=ExtResource( 5 )]
-margin_left = 86.0
-margin_top = 20.0
-margin_right = 186.0
-margin_bottom = 44.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="1"]
+margin_top = 36.0
+margin_right = 256.0
+margin_bottom = 92.0
+custom_constants/separation = 48
+alignment = 1
+
+[node name="CompetitorResultsWrap" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 104.0
+margin_bottom = 56.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="CompetitorName" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap" index="0"]
+margin_right = 104.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 2 )
+text = "Jack"
+align = 1
+
+[node name="RoundScoreWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap" index="1"]
+margin_top = 25.0
+margin_right = 104.0
+margin_bottom = 33.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="RoundScore1" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap/RoundScoreWrap" index="0"]
+margin_right = 24.0
+margin_bottom = 8.0
+text = "1.0"
+
+[node name="RoundScore2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap/RoundScoreWrap" index="1"]
+margin_left = 40.0
+margin_right = 64.0
+margin_bottom = 8.0
+text = "1.0"
+
+[node name="RoundScore3" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap/RoundScoreWrap" index="2"]
+margin_left = 80.0
+margin_right = 104.0
+margin_bottom = 8.0
+text = "1.0"
+
+[node name="TotalScoreLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap" index="2"]
+margin_top = 45.0
+margin_right = 104.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 3 )
+text = "10.0"
+align = 1
+
+[node name="PlayerResultWrap" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 152.0
+margin_right = 256.0
+margin_bottom = 56.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="PlayerLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/PlayerResultWrap" index="0"]
+margin_right = 104.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 2 )
+text = "You"
+align = 1
+
+[node name="Round1ScoreWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/PlayerResultWrap" index="1"]
+margin_top = 25.0
+margin_right = 104.0
+margin_bottom = 33.0
+custom_constants/separation = 16
+alignment = 1
+
+[node name="RoundScore1" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/PlayerResultWrap/Round1ScoreWrap" index="0"]
+margin_right = 24.0
+margin_bottom = 8.0
+text = "1.0"
+
+[node name="RoundScore2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/PlayerResultWrap/Round1ScoreWrap" index="1"]
+margin_left = 40.0
+margin_right = 64.0
+margin_bottom = 8.0
+text = "1.0"
+
+[node name="RoundScore3" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/PlayerResultWrap/Round1ScoreWrap" index="2"]
+margin_left = 80.0
+margin_right = 104.0
+margin_bottom = 8.0
+text = "1.0"
+
+[node name="TotalScoreLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/PlayerResultWrap" index="2"]
+margin_top = 45.0
+margin_right = 104.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 3 )
+text = "10.0"
+align = 1
+
+[node name="ButtonsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="2"]
+margin_top = 112.0
+margin_right = 256.0
+margin_bottom = 136.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="PlayButton" parent="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="0" instance=ExtResource( 5 )]
+margin_left = 16.0
+margin_right = 116.0
+margin_bottom = 24.0
+text = "Proceed"
+
+[node name="MenuButton" parent="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap" index="1" instance=ExtResource( 5 )]
+margin_left = 140.0
+margin_right = 240.0
+margin_bottom = 24.0
 size_flags_horizontal = 4
 text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap/MenuButton" to="." method="_on_MenuButton_pressed"]
