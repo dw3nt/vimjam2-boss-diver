@@ -13,6 +13,9 @@ var roundNumber : = 0
 var scoreToBeat : = 0.0
 
 onready var publicPool = $PublicPool
+onready var uiNameLabel = $CanvasLayer/UI/MarginContainer/VBoxContainer/ChallengerNameLabel
+onready var uiRoundLabel = $CanvasLayer/UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/RoundLabel
+onready var uiPointsLabel = $CanvasLayer/UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ChallengerPointsLabel
 
 
 func _ready() -> void:
@@ -22,7 +25,7 @@ func _ready() -> void:
 		scoreToBeat = params.scoreToBeat
 		victories = params.victories
 		roundNumber = params.roundNumber
-	
+		
 	if publicPool.diverScene == COMPETITOR_SCENE:
 		publicPool.diveResultMessage.text = "The score to beat is:"
 		publicPool.diveResultsWrap.displayPoints = true
@@ -33,8 +36,16 @@ func _ready() -> void:
 		publicPool.retryButton.text = "Next Round"
 	
 	publicPool.initScene()
+	updateUi()
+	
 	yield(get_tree().create_timer(0.25), "timeout")
 	emit_signal("room_ready")
+	
+	
+func updateUi() -> void:
+	uiNameLabel.text = "Competitor: " + ChallengerTracker.getCurrentChallenger().name
+	uiRoundLabel.text = "Round: " + str(roundNumber + 1)
+	uiPointsLabel.text = "Score: " + ChallengerTracker.getPointsForRound("competitor", roundNumber)
 
 
 func _on_PublicPool_main_menu_button_pressed():

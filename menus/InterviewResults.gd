@@ -2,10 +2,16 @@ extends "res://menus/BaseMenu.gd"
 
 const MAIN_MENU_SCENE : = "res://menus/MainMenu.tscn"
 
+export(String, FILE, "*.tscn") var interviewScene
+
 var challengerScore : float = 0.0
 var playerScore : float = 0.0
 
+onready var anim = $AnimationPlayer
+
 onready var resultsLabel = $MarginContainer/CenterContainer/VBoxContainer/ResultsLabel
+onready var competitorCard = $CompetitorCard
+onready var cardPlayButton = $CompetitorCard/MarginContainer/CenterContainer/PanelContainer/VBoxContainer/ButtonWrap/ChallengeButton
 
 onready var competitorNameLabel = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap/CompetitorName
 onready var competitorScoreRound1 = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/CompetitorResultsWrap/RoundScoreWrap/RoundScore1
@@ -23,8 +29,8 @@ func _ready() -> void:
 	initResultsLabel()
 	initCompetitorData()
 	initPlayerData()
+	initChallengerCard()
 	
-	ChallengerTracker.currentChallengerKey += 1		# do this after initing results with current key
 	emit_signal("room_ready")
 	
 	
@@ -51,7 +57,29 @@ func initPlayerData() -> void:
 	playerScoreRound2.text = str("%.1f" % ChallengerTracker.getRoundTotalScore(ChallengerTracker.currentChallengerKey, "player", 1))
 	playerScoreRound3.text = str("%.1f" % ChallengerTracker.getRoundTotalScore(ChallengerTracker.currentChallengerKey, "player", 2))
 	playerTotalScore.text = str("%.1f" % playerScore)
+	
+	
+func initChallengerCard() -> void:
+	if playerScore > challengerScore:
+		ChallengerTracker.currentChallengerKey += 1		# do this after initing results with current key
+		competitorCard.data = ChallengerTracker.getCurrentChallenger()
+		competitorCard.initCard()
+		cardPlayButton.text = "Challenge"
+	else:
+		cardPlayButton.text = "Retry"
 
 
 func _on_MenuButton_pressed() -> void:
 	emit_signal("room_change_requested", { "scene": MAIN_MENU_SCENE } )
+
+
+func _on_PlayButton_pressed() -> void:
+	anim.play("competitor_card_slide_in")
+
+
+func _on_CompetitorCard_challenge_pressed():
+	emit_signal("room_change_requested", { "scene": interviewScene })
+
+
+func _on_CompetitorCard_main_menu_pressed():
+	emit_signal("room_change_requested", { "scene": MAIN_MENU_SCENE })

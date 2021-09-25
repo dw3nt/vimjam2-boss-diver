@@ -1,12 +1,44 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://menus/BaseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://menus/InterviewResults.gd" type="Script" id=2]
 [ext_resource path="res://menus/default_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/fonts/PixelOperatorMono8.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/CompetitorCard.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/Pool.tscn" type="PackedScene" id=7]
+[ext_resource path="res://rooms/Background.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Animation" id=4]
+resource_name = "competitor_card_slide_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CompetitorCard:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 16, -180 ), Vector2( 16, 4 ) ]
+}
 
 [sub_resource type="DynamicFont" id=1]
+size = 12
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -20,8 +52,19 @@ font_data = ExtResource( 4 )
 [node name="InterviewResults" instance=ExtResource( 1 )]
 theme = ExtResource( 3 )
 script = ExtResource( 2 )
+interviewScene = "res://rooms/Interview.tscn"
 
-[node name="MarginContainer" type="MarginContainer" parent="." index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+anims/competitor_card_slide_in = SubResource( 4 )
+
+[node name="Background" parent="." index="1" instance=ExtResource( 8 )]
+position = Vector2( 0, 19 )
+
+[node name="Pool" parent="Background" index="5" instance=ExtResource( 7 )]
+position = Vector2( 120, 172 )
+z_index = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 16
@@ -40,22 +83,23 @@ margin_bottom = 176.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" index="0"]
 margin_left = 16.0
-margin_top = 18.0
+margin_top = 19.0
 margin_right = 272.0
-margin_bottom = 154.0
+margin_bottom = 152.0
 custom_constants/separation = 20
 
 [node name="ResultsLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="0"]
 margin_right = 256.0
-margin_bottom = 16.0
+margin_bottom = 13.0
 custom_fonts/font = SubResource( 1 )
 text = "Results"
 align = 1
+autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="1"]
-margin_top = 36.0
+margin_top = 33.0
 margin_right = 256.0
-margin_bottom = 92.0
+margin_bottom = 89.0
 custom_constants/separation = 48
 alignment = 1
 
@@ -151,9 +195,9 @@ text = "10.0"
 align = 1
 
 [node name="ButtonsWrap" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="2"]
-margin_top = 112.0
+margin_top = 109.0
 margin_right = 256.0
-margin_bottom = 136.0
+margin_bottom = 133.0
 custom_constants/separation = 24
 alignment = 1
 
@@ -170,4 +214,15 @@ margin_bottom = 24.0
 size_flags_horizontal = 4
 text = "Main Menu"
 
+[node name="CompetitorCard" parent="." index="3" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = -180.0
+margin_right = 304.0
+margin_bottom = -8.0
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/ButtonsWrap/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="challenge_pressed" from="CompetitorCard" to="." method="_on_CompetitorCard_challenge_pressed"]
+[connection signal="main_menu_pressed" from="CompetitorCard" to="." method="_on_CompetitorCard_main_menu_pressed"]

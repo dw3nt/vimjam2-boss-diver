@@ -38,6 +38,13 @@ func chooseChallenger() -> CompetitorData:
 	return currentChallengerData[currentChallengerKey]
 	
 	
+func getPointsForRound(diverKey : String, roundOffset : int) -> String:
+	if interviewPoints[currentChallengerKey][diverKey].size() > roundOffset:
+		return str("%.1f" % getRoundTotalScore(currentChallengerKey, diverKey, roundOffset))
+	else:
+		return "n/a"
+	
+	
 func getRoundTotalScore(challengerOffset : int, diverKey : String, roundOffset : int) -> float:
 	var totalPoints = 0.0
 	for points in interviewPoints[challengerOffset][diverKey][roundOffset]:
