@@ -51,8 +51,6 @@ func _on_PublicPool_retry_button_pressed():
 		ChallengerTracker.interviewPoints[ChallengerTracker.currentChallengerKey].player.append(publicPool.diver.stateWrap.getPointsArray())
 	else:
 		ChallengerTracker.interviewPoints[ChallengerTracker.currentChallengerKey].competitor.append(publicPool.diver.stateWrap.getPointsArray())
-		
-	print(ChallengerTracker.interviewPoints[ChallengerTracker.currentChallengerKey])
 	
 	
 func createParams() -> Dictionary:
