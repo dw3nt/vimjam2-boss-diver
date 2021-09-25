@@ -17,6 +17,7 @@ var inputCooldown : = 0.5
 
 var expectedInputs = 15
 var inputs : = 0
+var pointScaling : = 1.0
 
 onready var poseTimer = $PoseTimer as Timer
 onready var poseAudio = $PoseAudio as AudioStreamPlayer
@@ -49,10 +50,12 @@ func enteredPool() -> bool:
 	if canInput:
 		inputs += GRACEFUL_BONUS
 		fsm.change_state("GracefulEntrance")
+		pointScaling = 1.0
 		return false
 	else:
 		inputs += SLOPPY_BONUS
 		fsm.change_state("SloppyEntrance")
+		pointScaling = 0.5
 		return true
 		
 		
@@ -74,5 +77,5 @@ func _on_PoseTimer_timeout() -> void:
 func exit_state() -> void:
 	if inputs > expectedInputs:
 		expectedInputs = inputs	# aka - you get 10 points for going over the expected
-	fsm.points3 = clamp(range_lerp(inputs, 0.0, expectedInputs, 0.0, 10.0), 0.0, 10.0)
+	fsm.points3 = clamp(range_lerp(inputs, 0.0, expectedInputs, 0.0, 10.0), 0.0, 10.0) * pointScaling
 	poseTimer.stop()
