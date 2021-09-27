@@ -8,11 +8,11 @@ const DIFFICULTY_IMAGE_HEIGHT : = 8
 
 var data
 
-onready var nameLabel = $MarginContainer/CenterContainer/PanelContainer/VBoxContainer/CardDataWrap/DataWrap/DescriptionWrap/NameLabel
-onready var flavorLabel = $MarginContainer/CenterContainer/PanelContainer/VBoxContainer/CardDataWrap/DataWrap/DescriptionWrap/FlavorLabel
-onready var diverImage = $MarginContainer/CenterContainer/PanelContainer/VBoxContainer/CardDataWrap/ImageWrap/DiverImage
-onready var difficultyImageWrap = $MarginContainer/CenterContainer/PanelContainer/VBoxContainer/CardDataWrap/DataWrap/DifficultyWrap/DifficultyImageWrap
-onready var difficultyImage = $MarginContainer/CenterContainer/PanelContainer/VBoxContainer/CardDataWrap/DataWrap/DifficultyWrap/DifficultyImageWrap/DifficultyImage
+onready var nameLabel = $VBoxContainer/CardDataWrap/DataWrap/DescriptionWrap/NameLabel
+onready var flavorLabel = $VBoxContainer/CardDataWrap/DataWrap/DescriptionWrap/FlavorLabel
+onready var diverImage = $VBoxContainer/CardDataWrap/ImageWrap/DiverImage
+onready var difficultyImageWrap = $VBoxContainer/CardDataWrap/DataWrap/DifficultyWrap/DifficultyImageWrap
+onready var difficultyImage = $VBoxContainer/CardDataWrap/DataWrap/DifficultyWrap/DifficultyImageWrap/DifficultyImage
 
 
 func initCard() -> void:

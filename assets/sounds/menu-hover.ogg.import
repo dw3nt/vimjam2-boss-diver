@@ -11,5 +11,5 @@ dest_files=[ "res://.import/menu-hover.ogg-a0ee3361c28029a17f45db854caa7652.oggs
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

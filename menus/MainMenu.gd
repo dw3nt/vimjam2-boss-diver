@@ -6,16 +6,28 @@ export(String, FILE, "*.tscn") var practiceScene
 onready var menuContainer = $MenuContainer
 onready var anim = $AnimationPlayer
 onready var storyIntro = $StoryIntro
-onready var competitorCard = $CompetitorCard
+onready var competitorSelector = $CompetitorSelector
 
 
 func _ready() -> void:
+	ChallengerTracker.chooseChallenger()
+	ChallengerTracker.currentChallengerKey += 1
+	ChallengerTracker.chooseChallenger()
+	ChallengerTracker.currentChallengerKey = 0
+	
+	print(ChallengerTracker.currentChallengerData)
+	print(ChallengerTracker.currentChallengerKey)
+	
+	yield(get_tree().create_timer(0.1), "timeout")
+	competitorSelector.initCardPos()
+	competitorSelector.updateButtonActive()
+	competitorSelector.flipLeftButton()
 	emit_signal("room_ready")
 
 
 func _on_PlayButton_pressed() -> void:
-	competitorCard.data = ChallengerTracker.getCurrentChallenger()
-	competitorCard.initCard()
+	competitorSelector.currentCard.data = ChallengerTracker.getCurrentChallenger()
+	competitorSelector.currentCard.initCard()
 	anim.play("challenger_card_slide_in")
 
 
@@ -51,14 +63,14 @@ func _on_CreditsButton_pressed():
 
 func _on_CreditsMenu_main_menu_pressed():
 	anim.play_backwards("credits_slide_in")
-	
-	
-func _on_CompetitorCard_challenge_pressed():
+
+
+func _on_CompetitorSelector_competitor_challenge_pressed():
 	emit_signal("room_change_requested", {
 		"scene": interviewScene,
 		"transition": transition
 	})
 
 
-func _on_CompetitorCard_main_menu_pressed():
+func _on_CompetitorSelector_competitor_menu_pressed():
 	anim.play_backwards("challenger_card_slide_in")

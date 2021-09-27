@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://menus/ArrowButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menus/default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://menus/CompetitorCard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/CompetitorSelector.gd" type="Script" id=4]
+
+[node name="CompetitorSelector" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CardWrap" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 4
+custom_constants/margin_right = 8
+custom_constants/margin_top = 0
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CardWrap"]
+margin_left = 8.0
+margin_right = 312.0
+margin_bottom = 180.0
+mouse_filter = 1
+
+[node name="CompetitorCard" parent="CardWrap/CenterContainer" instance=ExtResource( 3 )]
+margin_left = 39.0
+margin_top = 33.0
+margin_right = 265.0
+margin_bottom = 147.0
+
+[node name="CompetitorCard2" parent="CardWrap/CenterContainer" instance=ExtResource( 3 )]
+margin_left = 359.0
+margin_top = 33.0
+margin_right = 585.0
+margin_bottom = 147.0
+
+[node name="LeftButton" parent="CardWrap" instance=ExtResource( 1 )]
+margin_left = 8.0
+margin_top = 82.0
+margin_right = 24.0
+margin_bottom = 98.0
+size_flags_horizontal = 0
+
+[node name="RightButton" parent="CardWrap" instance=ExtResource( 1 )]
+margin_left = 296.0
+margin_top = 82.0
+margin_right = 312.0
+margin_bottom = 98.0
+size_flags_horizontal = 8
+
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="challenge_pressed" from="CardWrap/CenterContainer/CompetitorCard" to="." method="_on_CompetitorCard_challenge_pressed"]
+[connection signal="main_menu_pressed" from="CardWrap/CenterContainer/CompetitorCard" to="." method="_on_CompetitorCard_main_menu_pressed"]
+[connection signal="challenge_pressed" from="CardWrap/CenterContainer/CompetitorCard2" to="." method="_on_CompetitorCard_challenge_pressed"]
+[connection signal="main_menu_pressed" from="CardWrap/CenterContainer/CompetitorCard2" to="." method="_on_CompetitorCard_main_menu_pressed"]

@@ -7,16 +7,16 @@
 [ext_resource path="res://menus/BaseButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://rooms/Background.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/Pool.tscn" type="PackedScene" id=7]
-[ext_resource path="res://menus/CompetitorCard.tscn" type="PackedScene" id=8]
 [ext_resource path="res://menus/StoryIntro.tscn" type="PackedScene" id=9]
 [ext_resource path="res://menus/HowToMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://menus/CreditsMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://menus/CompetitorSelector.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=5]
 resource_name = "challenger_card_slide_in"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("CompetitorCard:rect_position")
+tracks/0/path = NodePath("MenuContainer:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,10 +25,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -200 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, -10 ), Vector2( 0, 190 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MenuContainer:rect_position")
+tracks/1/path = NodePath("CompetitorSelector:rect_position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -10 ), Vector2( 0, 190 ) ]
+"values": [ Vector2( 0, -200 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -171,7 +171,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -10.0
-margin_bottom = 2.0
+margin_bottom = 2.00003
 custom_constants/margin_right = 16
 custom_constants/margin_top = 16
 custom_constants/margin_left = 16
@@ -275,7 +275,7 @@ margin_top = -10.0
 margin_right = -330.0
 margin_bottom = -10.0
 
-[node name="CompetitorCard" parent="." index="7" instance=ExtResource( 8 )]
+[node name="CompetitorSelector" parent="." index="7" instance=ExtResource( 12 )]
 margin_top = -200.0
 margin_bottom = -200.0
 
@@ -287,5 +287,5 @@ margin_bottom = -200.0
 [connection signal="scroll_finished" from="StoryIntro" to="." method="_on_StoryIntro_scroll_finished"]
 [connection signal="main_menu_pressed" from="HowToMenu" to="." method="_on_HowToMenu_main_menu_pressed"]
 [connection signal="main_menu_pressed" from="CreditsMenu" to="." method="_on_CreditsMenu_main_menu_pressed"]
-[connection signal="challenge_pressed" from="CompetitorCard" to="." method="_on_CompetitorCard_challenge_pressed"]
-[connection signal="main_menu_pressed" from="CompetitorCard" to="." method="_on_CompetitorCard_main_menu_pressed"]
+[connection signal="competitor_challenge_pressed" from="CompetitorSelector" to="." method="_on_CompetitorSelector_competitor_challenge_pressed"]
+[connection signal="competitor_menu_pressed" from="CompetitorSelector" to="." method="_on_CompetitorSelector_competitor_menu_pressed"]
